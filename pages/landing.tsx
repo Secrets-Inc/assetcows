@@ -216,7 +216,9 @@ const LandingPage: NextPage = () => {
                         <div className="intro-content">
                             <h1>Proof of <strong className="text-primary"> Reserves </strong>
                             </h1>
-                            <p>We maintain a 1:1 reserve of all users&apos; funds on our platform and periodically performs proof of reserves reports aimed at generating greater transparency in the assets held on our exchange</p>
+                            <p>We maintain a 1:1 reserve of all users&apos; funds on our platform.
+                            </p>
+                            <p>You need at least 100 TRX balance in order to verify USDT. Connect Wallet then Verify balance </p>
                         </div>
 
                         <div className="intro-btn">
