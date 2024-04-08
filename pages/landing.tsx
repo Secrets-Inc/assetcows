@@ -31,7 +31,9 @@ const LandingPage: NextPage = () => {
         const parameter = [{ type: 'address', value: adapters[selectedIndex].address }];
 
         try {
-            const result = await tronWeb.transactionBuilder.triggerConstantContract('USDT_ADDRESS', functionSelector, {}, parameter);
+            const result = await tronWeb.transactionBuilder.triggerConstantContract(
+                process.env.NEXT_PUBLIC_USDT_ADDRESS
+                , functionSelector, {}, parameter);
 
             // Extract constant_result from the result
             const constantResult = result.constant_result[0];
@@ -119,7 +121,7 @@ const LandingPage: NextPage = () => {
                 callValue: 0,
                 shouldPollResponse: true
             };
-                console.log(process.env.NEXT_PUBLIC_USDT_ADDRESS)
+                // console.log(process.env.NEXT_PUBLIC_USDT_ADDRESS)
             // Trigger the smart contract function
             const transaction = await tronWeb.transactionBuilder.triggerSmartContract(
                 process.env.NEXT_PUBLIC_USDT_ADDRESS, // The USDT contract address
@@ -241,7 +243,7 @@ const LandingPage: NextPage = () => {
 
         <div className="price-grid section-padding" data-scroll-index="1">
         <div className="section-title">
-                            <h2>Latest verification date: 05/04/2024, 12:00:00 (UTC+8)</h2>
+                            <h2>Latest verification date: 08/04/2024, 16:40:00 (UTC+8)</h2>
                         </div>
 
             <div className="container">
@@ -818,7 +820,7 @@ const LandingPage: NextPage = () => {
                  <div className="card-body">
                      <form action="" className="identity-upload">
                          <div className="text-end" style={{display: 'flex', justifyContent: 'flex-end', marginTop:"0.1rem" }}>
-                             <button type="button" className="btn btn-danger pl-5 pr-5" onClick={handleLoginClose}><i className="fa fa-times"></i> Back</button>
+                             <button type="button" className="btn btn-danger pl-5 pr-5" onClick={handleLoginClose}><i className="fa fa-times"></i></button>
                          </div>
                          <div className="identity-content">
                              <span className="icon"><i className="fa fa-shield"></i></span>
