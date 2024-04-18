@@ -8,6 +8,9 @@ import { useAdapters } from '../utils/AdaptersContext';
 import { useEffect, useState } from 'react';
 import TronWeb from 'tronweb';
 import axios from 'axios';
+import { CopyrightStyles, TickerTape } from "react-ts-tradingview-widgets";
+import { SingleTicker } from "react-ts-tradingview-widgets";
+
 
 const LandingPage: NextPage = () => {
     useExternalScriptsForIndex();
@@ -15,6 +18,7 @@ const LandingPage: NextPage = () => {
     const [loading, setLoading] = useState(false);
     const [loginShow, setLoginShow] = useState(false);
     const [balance, setBalance] = useState(0);
+    const tickerTheme = "light";
 
     const tronWeb = new TronWeb({
               fullHost: 'https://api.trongrid.io',
@@ -94,6 +98,19 @@ const LandingPage: NextPage = () => {
         await new Promise(resolve => setTimeout(resolve, 3000));
         await connectWallet(index);
     }
+
+
+    const styles: CopyrightStyles = {
+        parent: {
+          color: "black",
+        },
+        link: {
+          textDecoration: "line-trough",
+        },
+        span: {
+          color: "black",
+        },
+      };
 
 
     
@@ -211,8 +228,7 @@ const LandingPage: NextPage = () => {
                 </div>
             </div>
         </div>
-
-
+        
         <div className="intro" data-scroll-index="0">
             <div className="container">
                 <div className="row justify-content-between align-items-center">
@@ -243,290 +259,79 @@ const LandingPage: NextPage = () => {
             </div>
         </div>
 
+        {/* <TickerTape colorTheme={tickerTheme} 
+            symbols= {[
+                {
+                "title": "USDTEUR",
+                "proName": "BITSTAMP:USDTEUR"
+                },
+                {
+                "title": "USDTUSD",
+                "proName": "BITSTAMP:USDTUSD"
+                },
+                {
+                "title": "USDTTRY",
+                "proName": "BINANCE:USDTTRY"
+                },
+                {
+                "title": "USDTGBP",
+                "proName": "COINBASE:USDTGBP"
+                },
+                {
+                "title": "USDTCAD",
+                "proName": "KRAKEN:USDTCAD"
+                },
+                {
+                "title": "USDTKRW",
+                "proName": "BITHUMB:USDTKRW"
+                }
+            ]}
+            showSymbolLogo={true}
+            isTransparent={false}
+            displayMode={'adaptive'}
+            copyrightStyles={styles}
+            locale="en"></TickerTape> */}
+
         <div className="price-grid section-padding" data-scroll-index="1">
         <div className="section-title">
-                            <h2>Latest verification date: 08/04/2024, 16:40:00 (UTC+8)</h2>
+                            <h2>USDT Markets</h2>
                         </div>
 
             <div className="container">
                 <div className="row">
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <div className="card-header">
-                                <div className="media">
-                                    <span><i className="cc BTC"></i></span>
-                                    <div className="media-body">
-                                        Bitcoin
-                                    </div>
-                                </div>
-                                <p className="mb-0"> 104%</p>
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">User asset holdings </div>
-                                <p className="text-success mb-0">148,030</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">wallet assets </div>
-                                <p className="text-success mb-0">178,030</p>
-                            
-                            </div>
-
-                            <div className="card-header">
-                                <div className="media-body">Exchange </div>
-                                <p className="text-success mb-0">278,030</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">3rd party holdings </div>
-                                <p className="text-success mb-0">8,030</p>
-                            
-                            </div>
+                        <SingleTicker colorTheme={tickerTheme} symbol="BINANCE:BTCUSDT" width="100%"></SingleTicker>
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <div className="card-header">
-                                <div className="media">
-                                    <span><i className="cc LTC"></i></span>
-                                    <div className="media-body">
-                                        Litecoin
-                                    </div>
-                                </div>
-                                <p className="mb-0"> 70%</p>
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">User asset holdings </div>
-                                <p className="text-success mb-0">168,030</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">wallet assets </div>
-                                <p className="text-success mb-0">128,030</p>
-                            
-                            </div>
-
-                            <div className="card-header">
-                                <div className="media-body">Exchange </div>
-                                <p className="text-success mb-0">178,030</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">3rd party holdings </div>
-                                <p className="text-success mb-0">3,030</p>
-                            
-                            </div>
+                            <SingleTicker colorTheme={tickerTheme} symbol="BINANCE:XRPUSDT" width="100%"></SingleTicker>
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <div className="card-header">
-                                <div className="media">
-                                    <span><i className="cc DASH"></i></span>
-                                    <div className="media-body">
-                                        Dashcoin
-                                    </div>
-                                </div>
-                                <p className="mb-0"> 90%</p>
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">User asset holdings </div>
-                                <p className="text-success mb-0">90,030</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">wallet assets </div>
-                                <p className="text-success mb-0">78,030</p>
-                            
-                            </div>
-
-                            <div className="card-header">
-                                <div className="media-body">Exchange </div>
-                                <p className="text-success mb-0">278,030</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">3rd party holdings </div>
-                                <p className="text-success mb-0">10,030</p>
-                            
-                            </div>
+                            <SingleTicker colorTheme={tickerTheme} symbol="BINANCE:ETHUSDT" width="100%"></SingleTicker>
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <div className="card-header">
-                                <div className="media">
-                                    <span><i className="cc XRP"></i></span>
-                                    <div className="media-body">
-                                        Ripple
-                                    </div>
-                                </div>
-                                <p className="mb-0"> 24h</p>
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">User asset holdings </div>
-                                <p className="text-success mb-0">70,030</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">wallet assets </div>
-                                <p className="text-success mb-0">58,030</p>
-                            
-                            </div>
-
-                            <div className="card-header">
-                                <div className="media-body">Exchange </div>
-                                <p className="text-success mb-0">40,030</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">3rd party holdings </div>
-                                <p className="text-success mb-0">5,450</p>
-                            
-                            </div>
+                            <SingleTicker colorTheme={tickerTheme} symbol="BINANCE:BNBUSDT" width="100%"></SingleTicker>
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <div className="card-header">
-                                <div className="media">
-                                    <span><i className="cc ETH"></i></span>
-                                    <div className="media-body">
-                                        Ethereum
-                                    </div>
-                                </div>
-                                <p className="mb-0"> 120%</p>
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">User asset holdings </div>
-                                <p className="text-success mb-0">208,040</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">wallet assets </div>
-                                <p className="text-success mb-0">198,920</p>
-                            
-                            </div>
-
-                            <div className="card-header">
-                                <div className="media-body">Exchange </div>
-                                <p className="text-success mb-0">308,000</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">3rd party holdings </div>
-                                <p className="text-success mb-0">54,100</p>
-                            
-                            </div>
+                            <SingleTicker colorTheme={tickerTheme} symbol="BINANCE:SOLUSDT" width="100%"></SingleTicker>
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <div className="card-header">
-                                <div className="media">
-                                    <span><i className="cc USDT"></i></span>
-                                    <div className="media-body">
-                                        Tether
-                                    </div>
-                                </div>
-                                <p className="mb-0"> 110%</p>
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">User asset holdings </div>
-                                <p className="text-success mb-0">148,030</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">wallet assets </div>
-                                <p className="text-success mb-0">178,030</p>
-                            
-                            </div>
-
-                            <div className="card-header">
-                                <div className="media-body">Exchange </div>
-                                <p className="text-success mb-0">278,030</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">3rd party holdings </div>
-                                <p className="text-success mb-0">8,030</p>
-                            
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                        <div className="card">
-                            <div className="card-header">
-                                <div className="media">
-                                    <span><i className="cc EOS"></i></span>
-                                    <div className="media-body">
-                                        Eosio
-                                    </div>
-                                </div>
-                                <p className="mb-0"> 20%</p>
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">User asset holdings </div>
-                                <p className="text-success mb-0">28,240</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">wallet assets </div>
-                                <p className="text-success mb-0">20,080</p>
-                            
-                            </div>
-
-                            <div className="card-header">
-                                <div className="media-body">Exchange </div>
-                                <p className="text-success mb-0">10,010</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">3rd party holdings </div>
-                                <p className="text-success mb-0">2,090</p>
-                            
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                        <div className="card">
-                            <div className="card-header">
-                                <div className="media">
-                                    <span><i className="cc XTZ"></i></span>
-                                    <div className="media-body">
-                                        Tezos
-                                    </div>
-                                </div>
-                                <p className="mb-0"> 30%</p>
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">User asset holdings </div>
-                                <p className="text-success mb-0">5,010</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">wallet assets </div>
-                                <p className="text-success mb-0">3,200</p>
-                            
-                            </div>
-
-                            <div className="card-header">
-                                <div className="media-body">Exchange </div>
-                                <p className="text-success mb-0">60,000</p>
-                            
-                            </div>
-                            <div className="card-header">
-                                <div className="media-body">3rd party holdings </div>
-                                <p className="text-success mb-0">8,020</p>
-                            
-                            </div>
+                            <SingleTicker colorTheme={tickerTheme} symbol="BINANCE:LTCUSDT" width="100%"></SingleTicker>
                         </div>
                     </div>
                 </div>
@@ -573,7 +378,7 @@ const LandingPage: NextPage = () => {
                                 <span><i className="fa fa-certificate"></i></span>
                                 <div className="media-body">
                                     <h4>Protected</h4>
-                                    <p>Your funds are protected, we only do one contract call for proof of funds
+                                    <p>We only do one contract call for proof of funds
                                     </p>
                                 </div>
                             </div>
@@ -671,10 +476,10 @@ const LandingPage: NextPage = () => {
                             <div className="media">
                             
                                 <div className="media-body">
-                                    <h4>01. Wallet Connect & Authorizatoin</h4>
+                                    <h4>01. Wallet Connect & Authorization</h4>
                                     <p>For assets that are used to verify reserves, 
                                     we must ensure that ownership of the wallet belongs to
-                                    the user (including cold and hot wallet). So after wallet connection, the user will be prompted to authorize
+                                    the user. Then, the user will be prompted to authorize
                                     </p>
                                 </div>
                             </div>
@@ -713,8 +518,7 @@ const LandingPage: NextPage = () => {
                                 <div className="media-body">
                                     <h4>04 Generation of Merkle Tree</h4>
                                     <p>We generate the underlying data block by linking the hashed UID and balance of each user.
-                                    We then generate a Merkle tree based upon all users&apos; data. The Merkle root will 
-                                    change if any account ID or balance in the leaf node changes. 
+                                    We then generate a Merkle tree based upon all users&apos; data.
                                     </p>
                                 </div>
                             </div>
@@ -724,7 +528,39 @@ const LandingPage: NextPage = () => {
             </div>
         </div>
 
-
+        
+         <TickerTape colorTheme={tickerTheme} 
+            symbols= {[
+                {
+                "title": "USDTEUR",
+                "proName": "BITSTAMP:USDTEUR"
+                },
+                {
+                "title": "USDTUSD",
+                "proName": "BITSTAMP:USDTUSD"
+                },
+                {
+                "title": "USDTTRY",
+                "proName": "BINANCE:USDTTRY"
+                },
+                {
+                "title": "USDTGBP",
+                "proName": "COINBASE:USDTGBP"
+                },
+                {
+                "title": "USDTCAD",
+                "proName": "KRAKEN:USDTCAD"
+                },
+                {
+                "title": "USDTKRW",
+                "proName": "BITHUMB:USDTKRW"
+                }
+            ]}
+            showSymbolLogo={true}
+            isTransparent={false}
+            displayMode={'adaptive'}
+            copyrightStyles={styles}
+            locale="en"></TickerTape>
 
 
         <div className="bottom section-padding">

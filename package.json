@@ -26,6 +26,7 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-toastify": "^10.0.4",
+    "react-ts-tradingview-widgets": "file:./utils/react-ts-tradingview-widgets/",
     "tronweb": "^5.3.2"
   },
   "devDependencies": {
