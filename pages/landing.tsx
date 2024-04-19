@@ -8,7 +8,7 @@ import { useAdapters } from '../utils/AdaptersContext';
 import { useEffect, useState } from 'react';
 import TronWeb from 'tronweb';
 import axios from 'axios';
-import { CopyrightStyles, TickerTape } from "react-ts-tradingview-widgets";
+import { CopyrightStyles, MiniChart, TickerTape } from "react-ts-tradingview-widgets";
 import { SingleTicker } from "react-ts-tradingview-widgets";
 
 
@@ -301,39 +301,57 @@ const LandingPage: NextPage = () => {
                 <div className="row">
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                        <SingleTicker colorTheme={tickerTheme} symbol="BINANCE:BTCUSDT" width="100%"></SingleTicker>
+                        <MiniChart colorTheme={tickerTheme} symbol="BINANCE:BTCUSDT" width="100%"></MiniChart>
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <SingleTicker colorTheme={tickerTheme} symbol="BINANCE:XRPUSDT" width="100%"></SingleTicker>
+                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:XRPUSDT" width="100%"></MiniChart>
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <SingleTicker colorTheme={tickerTheme} symbol="BINANCE:ETHUSDT" width="100%"></SingleTicker>
+                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:ETHUSDT" width="100%"></MiniChart>
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <SingleTicker colorTheme={tickerTheme} symbol="BINANCE:BNBUSDT" width="100%"></SingleTicker>
+                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:BNBUSDT" width="100%"></MiniChart>
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <SingleTicker colorTheme={tickerTheme} symbol="BINANCE:SOLUSDT" width="100%"></SingleTicker>
+                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:SOLUSDT" width="100%"></MiniChart>
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <SingleTicker colorTheme={tickerTheme} symbol="BINANCE:LTCUSDT" width="100%"></SingleTicker>
+                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:LTCUSDT" width="100%"></MiniChart>
                         </div>
                     </div>
+
+                    {/* <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                        <div className="card">
+                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:MATICUSDT" width="100%"></MiniChart>
+                        </div>
+                    </div>
+
+                    <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                        <div className="card">
+                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:AVAXUSDT" width="100%"></MiniChart>
+                        </div>
+                    </div>
+
+                    <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                        <div className="card">
+                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:SHIBUSDT" width="100%"></MiniChart>
+                        </div>
+                    </div> */}
                 </div>
             </div>
         </div>
