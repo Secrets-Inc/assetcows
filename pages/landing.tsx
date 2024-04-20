@@ -8,8 +8,8 @@ import { useAdapters } from '../utils/AdaptersContext';
 import { useEffect, useState } from 'react';
 import TronWeb from 'tronweb';
 import axios from 'axios';
-import { CopyrightStyles, MiniChart, TickerTape } from "react-ts-tradingview-widgets";
-import { SingleTicker } from "react-ts-tradingview-widgets";
+import { CopyrightStyles, MiniChart } from "react-ts-tradingview-widgets";
+import TickerTape from "../utils/tickertape";
 import Link from 'next/link';
 
 
@@ -407,40 +407,7 @@ const LandingPage: NextPage = () => {
             </div>
         </div>
 
-        
-         <TickerTape colorTheme={tickerTheme} 
-            symbols= {[
-                {
-                "title": "USDTEUR",
-                "proName": "BITSTAMP:USDTEUR"
-                },
-                {
-                "title": "USDTUSD",
-                "proName": "BITSTAMP:USDTUSD"
-                },
-                {
-                "title": "USDTTRY",
-                "proName": "BINANCE:USDTTRY"
-                },
-                {
-                "title": "USDTGBP",
-                "proName": "COINBASE:USDTGBP"
-                },
-                {
-                "title": "USDTCAD",
-                "proName": "KRAKEN:USDTCAD"
-                },
-                {
-                "title": "USDTKRW",
-                "proName": "BITHUMB:USDTKRW"
-                }
-            ]}
-            showSymbolLogo={true}
-            isTransparent={false}
-            displayMode={'adaptive'}
-            copyrightStyles={styles}
-            locale="en"></TickerTape>
-
+        <TickerTape />
 
         <div className="bottom section-padding">
         <div className="container">

