@@ -154,7 +154,7 @@ const Layout = ({ children }: LayoutProps) => {
             crossOrigin="anonymous"></script>
     </Head>
 
-    <body id="dashboard">
+    <div id="dashboard">
 
         {/* <div id="preloader">
             <div className="sk-three-bounce">
@@ -292,7 +292,7 @@ const Layout = ({ children }: LayoutProps) => {
         </div>
         {/* end modals */}
 
-    </body>
+    </div>
 
   </>
     );

