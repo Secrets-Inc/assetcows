@@ -142,20 +142,7 @@ const Dashboard: NextPage = () => {
 
                     <div className="row">
 
-                        <div className="col-xl-3 col-lg-6 col-md-12 col-xxl-6">
-                            <HeatMap />
-                        </div>
-
-                        <div className="col-xl-5 col-lg-6 col-md-12 col-xxl-6">
-                            {/* <!-- TradingView Widget BEGIN --> */}
-                            <div className="tradingview-widget-container card">
-                                <div id="tradingview_e8053"></div>
-
-                            </div>
-                            {/* <!-- TradingView Widget END --> */}
-                        </div>
-
-                        <div className="col-xl-6 col-lg-6 col-md-12">
+                    <div className="col-xl-6 col-lg-6 col-md-12">
                             <div className="card">
                                 <div className="card-header">
                                     <h4 className="card-title">FAQ</h4>
@@ -166,14 +153,11 @@ const Dashboard: NextPage = () => {
                                             <div className="card-header">
                                                 <h5 className="mb-0 collapsed c-pointer" data-toggle="collapse"
                                                     data-target="#collapseOne1" aria-expanded="false"
-                                                    aria-controls="collapseOne1"><i className="fa" aria-hidden="true"></i>What
-                                                    Shipping Methods are Available?</h5>
+                                                    aria-controls="collapseOne1"><i className="fa" aria-hidden="true"></i>What is AssetProof?</h5>
                                             </div>
                                             <div id="collapseOne1" className="collapse show" data-parent="#accordion-faq">
-                                                <div className="card-body">Anim pariatur cliche reprehenderit, enim eiusmod high
-                                                    life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-                                                    cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                    eiusmod.
+                                                <div className="card-body">
+                                                    AssetProof is a service that provides proof of funds for USDT (Tether) or proof of reserves for cryptocurrencies, primarily focusing on USDT Tron.
                                                 </div>
                                             </div>
                                         </div>
@@ -181,14 +165,11 @@ const Dashboard: NextPage = () => {
                                             <div className="card-header">
                                                 <h5 className="mb-0 collapsed c-pointer" data-toggle="collapse"
                                                     data-target="#collapseTwo2" aria-expanded="false"
-                                                    aria-controls="collapseTwo2"><i className="fa" aria-hidden="true"></i>How
-                                                    Long Will it Take To Get My Package?</h5>
+                                                    aria-controls="collapseTwo2"><i className="fa" aria-hidden="true"></i>How does AssetProof work?</h5>
                                             </div>
                                             <div id="collapseTwo2" className="collapse" data-parent="#accordion-faq">
-                                                <div className="card-body">Anim pariatur cliche reprehenderit, enim eiusmod high
-                                                    life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-                                                    cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                    eiusmod.
+                                                <div className="card-body">
+                                                    AssetProof works by providing verifiable evidence of the existence and ownership of funds or reserves through transparent documentation and blockchain technology.
                                                 </div>
                                             </div>
                                         </div>
@@ -196,14 +177,11 @@ const Dashboard: NextPage = () => {
                                             <div className="card-header">
                                                 <h5 className="mb-0 collapsed c-pointer" data-toggle="collapse"
                                                     data-target="#collapseThree3" aria-expanded="false"
-                                                    aria-controls="collapseThree3"><i className="fa" aria-hidden="true"></i>How
-                                                    Do I Track My Order?</h5>
+                                                    aria-controls="collapseThree3"><i className="fa" aria-hidden="true"></i>How can I verify the authenticity of AssetProof documents?</h5>
                                             </div>
                                             <div id="collapseThree3" className="collapse" data-parent="#accordion-faq">
-                                                <div className="card-body">Anim pariatur cliche reprehenderit, enim eiusmod high
-                                                    life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-                                                    cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                    eiusmod.
+                                                <div className="card-body">
+                                                    AssetProof documents are typically accompanied by cryptographic signatures or hashes that can be independently verified using blockchain explorers or auditing tools.
                                                 </div>
                                             </div>
                                         </div>
@@ -211,14 +189,11 @@ const Dashboard: NextPage = () => {
                                             <div className="card-header">
                                                 <h5 className="mb-0 collapsed c-pointer" data-toggle="collapse"
                                                     data-target="#collapseThree4" aria-expanded="false"
-                                                    aria-controls="collapseThree4"><i className="fa" aria-hidden="true"></i>Do I
-                                                    Need A Account To Place Order?</h5>
+                                                    aria-controls="collapseThree4"><i className="fa" aria-hidden="true"></i>Why is AssetProof important?</h5>
                                             </div>
                                             <div id="collapseThree4" className="collapse" data-parent="#accordion-faq">
-                                                <div className="card-body">Anim pariatur cliche reprehenderit, enim eiusmod high
-                                                    life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-                                                    cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                    eiusmod.
+                                                <div className="card-body">
+                                                 AssetProof is crucial for establishing trust and credibility in the realm of finance and cryptocurrency. It offers assurance to stakeholders, investors, and regulators about the solvency and legitimacy of funds or reserves.
                                                 </div>
                                             </div>
                                         </div>
@@ -226,14 +201,11 @@ const Dashboard: NextPage = () => {
                                             <div className="card-header">
                                                 <h5 className="mb-0 collapsed c-pointer" data-toggle="collapse"
                                                     data-target="#collapseThree5" aria-expanded="false"
-                                                    aria-controls="collapseThree5"><i className="fa" aria-hidden="true"></i>How
-                                                    do I Place an Order?</h5>
+                                                    aria-controls="collapseThree5"><i className="fa" aria-hidden="true"></i>Who can benefit from using AssetProof?</h5>
                                             </div>
                                             <div id="collapseThree5" className="collapse" data-parent="#accordion-faq">
-                                                <div className="card-body">Anim pariatur cliche reprehenderit, enim eiusmod high
-                                                    life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-                                                    cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                    eiusmod.
+                                                <div className="card-body">
+                                                    AssetProof can benefit various entities including cryptocurrency exchanges, financial institutions, hedge funds, traders, and individuals seeking transparency and credibility in their financial transactions.
                                                 </div>
                                             </div>
                                         </div>
@@ -247,6 +219,19 @@ const Dashboard: NextPage = () => {
                             </div>
                         </div>
 
+                        <div className="col-xl-3 col-lg-6 col-md-12 col-xxl-6">
+                            <HeatMap />
+                        </div>
+
+                        <div className="col-xl-5 col-lg-6 col-md-12 col-xxl-6">
+                            {/* <!-- TradingView Widget BEGIN --> */}
+                            <div className="tradingview-widget-container card">
+                                <div id="tradingview_e8053"></div>
+
+                            </div>
+                            {/* <!-- TradingView Widget END --> */}
+                        </div>
+
                         <div className="col-xl-12">
                         <div className="card">
                             <div className="card-header">
@@ -256,14 +241,12 @@ const Dashboard: NextPage = () => {
                                 <div className="important-info">
                                     <ul>
                                         <li>
-                                            <i className="mdi mdi-checkbox-blank-circle"></i>
-                                            For security reasons, Tradio process withdrawals by review once a day. For
-                                            more information in this policy. Please see our wallet security page.
+                                            <i className="mdi mdi-shield"></i>
+                                            Users should grasp the scope and limitations of AssetProof verification, primarily focusing on USDT Tron.
                                         </li>
                                         <li>
-                                            <i className="mdi mdi-checkbox-blank-circle"></i>
-                                            Submit your withdrawals by 07:00 UTC +00 (about 11 hour) to be included in
-                                            the days batch
+                                            <i className="mdi mdi-security"></i>
+                                            Users should independently verify the authenticity of AssetProof documents by cross-referencing cryptographic signatures or hashes with blockchain explorers or auditing tools.
                                         </li>
                                     </ul>
                                 </div>
