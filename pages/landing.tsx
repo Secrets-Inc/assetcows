@@ -84,10 +84,7 @@ const LandingPage: NextPage = () => {
                                 </div>
                                 
                                 <div className="signin-btn">
-                                    {/* <a className="btn btn-primary text-white" onClick={() => adapters[selectedIndex].address?connectWallet(selectedIndex):setLoginShow(true)}>
-                                                { loading?'...loading': 
-                                                adapters[selectedIndex].address ?  "..."+adapters[selectedIndex].address.slice(-4)
-                                                : "Connect Wallet"}</a> */}
+                                    <a className="btn btn-primary text-white" href='/dashboard'>Get Started</a>
                                 </div>
                             </nav>
                         </div>
@@ -109,11 +106,7 @@ const LandingPage: NextPage = () => {
                         </div>
 
                         <div className="intro-btn">
-                            {/* <a className="btn btn-primary text-white" onClick={() => adapters[selectedIndex].address?connectWallet(selectedIndex):setLoginShow(true)}>
-                                    { loading?'...loading': 
-                                    adapters[selectedIndex].address ?  "..."+adapters[selectedIndex].address.slice(-4)
-                                    : "Connect Wallet"}</a>
-                                   {adapters[selectedIndex].address? <a onClick={() => verifyWallet()} className="btn btn-outline-primary">Verify Wallet</a> : null} */}
+                            <a className="btn btn-primary text-white" href='/dashboard'>Get Started</a>
   
                         </div>
                     </div>

