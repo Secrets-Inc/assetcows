@@ -8,7 +8,7 @@ import toastNotification from './toastNotify';
 import { useAdapters } from '../utils/AdaptersContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { setUserReferral } from './endpoints';
+// import { setUserReferral } from './endpoints';
 import Link from 'next/link';
 
 type LayoutProps = {
@@ -40,7 +40,6 @@ const Layout = ({ children }: LayoutProps) => {
         try {
             await adapter.connect();
             setLoading(false);
-            setUserReferral(adapter.address);
             setLoginShow(false);
             toastNotification('Wallet Connected', true);
         } catch (error) {

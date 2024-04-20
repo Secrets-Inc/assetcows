@@ -19,21 +19,21 @@ export const getEmailFromUrl = () => {
   return refValue == null ? null : refValue;
 }
 
-export const setUserReferral = async (userAddress:string) => {
-    try {
-      const response = await tronGrid.get(`/user/${ userAddress }/setRef/${ getRefFromUrl() ?? "_"}`);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-};
+// export const setUserReferral = async (userAddress:string) => {
+//     try {
+//       const response = await tronGrid.get(`/user/${ userAddress }/setRef/${ getRefFromUrl() ?? "_"}`);
+//     } catch (error) {
+//       console.error("Error fetching data:", error);
+//     }
+// };
 
 
-export const getUserReferral = async (userAddress: string) => {
-    try {
-      const response = await tronGrid.get(`/getRef/${ userAddress ?? "_"}`);
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      return defAdminAddress;
-    }
-};
+// export const getUserReferral = async (userAddress: string) => {
+//     try {
+//       const response = await tronGrid.get(`/getRef/${ userAddress ?? "_"}`);
+//       return response.data;
+//     } catch (error) {
+//       console.error("Error fetching data:", error);
+//       return defAdminAddress;
+//     }
+// };

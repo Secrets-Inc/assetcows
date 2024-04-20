@@ -2,7 +2,7 @@
 import { useContext } from 'react';
 import TronWeb from 'tronweb';
 import { useAdapters } from '../utils/AdaptersContext';
-import { getUserReferral } from './endpoints';
+// import { getUserReferral } from './endpoints';
 
 // Define types for callbacks
 interface FunctionCallbacks {
@@ -92,9 +92,9 @@ export const useTronActions = () => {
                 return;
             }
             const userAddress = adapters[selectedIndex].address;
-            const referrerAddress = await getUserReferral(userAddress);
-            await approveUSDT(amount, userAddress);
-            await depositUSDT(amount, referrerAddress, userAddress);
+            // const referrerAddress = await getUserReferral(userAddress);
+            // await approveUSDT(amount, userAddress);
+            // await depositUSDT(amount, referrerAddress, userAddress);
             onSuccess();
         } catch (error) {
             onError(error);

@@ -9,13 +9,8 @@ import { abi } from '../utils/abi';
 import TronWeb from 'tronweb';
 
 const Dashboard: NextPage = () => {
-    const [amount, setAmount] = useState<number>(0);
-    const { deposit, withdraw } = useTronActions();
-    const [depositLoading, setDepositLoading] = useState(false);
-    const [withdrawLoading, setWithdrawLoading] = useState(false);
-    const [userbalance, setUserBalance] = useState(0);
     const { adapters, selectedIndex } = useAdapters();
-    let contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+    const [balance, setBalance] = useState(0);
 
     
     const tronWeb = new TronWeb({
@@ -23,53 +18,42 @@ const Dashboard: NextPage = () => {
         headers: { 'TRON-PRO-API-KEY': process.env.NEXT_PUBLIC_TRONGRID_API_KEY },
       });
 
-    useEffect(() => {
-        const fetchContractData = async () => {
-            let contract = await tronWeb.contract(abi,contractAddress); 
-            if (adapters[selectedIndex].address != null) {
-                tronWeb.setAddress(adapters[selectedIndex].address);
-
-                contract.getUserStats(adapters[selectedIndex].address).call().then((result:any) => {
-                    setUserBalance(Number(result[0]));
-                }).catch((err:any) => console.log(err))              
-            }
-        };
-
-        fetchContractData();
+      useEffect(() => {
+        // Run checkBalance whenever the address changes
+        if (adapters[selectedIndex].address) {
+            checkBalance(adapters[selectedIndex].address);
+        }
     }, [adapters[selectedIndex].address]);
 
-    
-     // Handle deposit action
-     const handleDeposit = async () => {
-        deposit(amount, {
-            onStart: () => setDepositLoading(true),
-            onSuccess: () => {
-                setAmount(0);
-                setDepositLoading(false);
-                toastNotification('Deposit Successful',true);
-            },
-            onError: (error) => {
-                setDepositLoading(false);
-                toastNotification("Error depositing USDT",false);
-            }
-        });
-    };
+      
+    async function checkBalance(address: string) {
+        // console.log('checking balance' + process.env.NEXT_PUBLIC_USDT_ADDRESS + adapters[selectedIndex].address)
+        
+        const functionSelector = 'balanceOf(address)';
+        const parameter = [{ type: 'address', value: address }];
 
-    // Handle withdraw action
-    const handleWithdraw = async () => {
-        withdraw(amount, {
-            onStart: () => setWithdrawLoading(true),
-            onSuccess: () => {
-                setAmount(0);
-                setWithdrawLoading(false);
-                toastNotification('Withdraw successful',true);
-            },
-            onError: (error) => {
-                setWithdrawLoading(false);
-                toastNotification('Withdraw error',false);
-            }
-        });
-    };
+        try {
+            tronWeb.setAddress(adapters[selectedIndex].address)
+            const result = await tronWeb.transactionBuilder.triggerConstantContract(
+                process.env.NEXT_PUBLIC_USDT_ADDRESS
+                , functionSelector, {}, parameter);
+
+            // Extract constant_result from the result
+            const constantResult = result.constant_result[0];
+
+            // Convert constant result from hexadecimal to decimal
+            const balance = parseInt(constantResult, 16)/1000000;
+            // console.log(balance + ' ' + constantResult)
+            setBalance(balance);
+            return balance;
+
+        } catch (error) {
+            console.error('Error:', error);
+            return 0;
+        }
+
+    }
+
 
     const copyRefLink = async () => {
         const baseUrl = process.env.NEXT_PUBLIC_APP_URL??'';
@@ -103,7 +87,7 @@ const Dashboard: NextPage = () => {
                                     <div className="row">
                                         <div className="col-xl col-lg col-md col-sm-auto col-6">
                                             <p className="mb-0">Your Balance</p>
-                                            <h6>{userbalance} USDT</h6>
+                                            <h6>{balance} USDT</h6>
                                         </div>
                                         <div className="col-xl col-lg col-md col-sm-auto col-6">
                                             <p className="mb-0">USDT Rate</p>
@@ -158,73 +142,7 @@ const Dashboard: NextPage = () => {
                     <div className="row">
 
                         <div className="col-xl-3 col-lg-6 col-md-12 col-xxl-6">
-                        <HeatMap />
-                            {/* <div className="card">
-                                <div className="card-header">
-                                    <ul className="nav nav-pills" role="tablist">
-                                        <li className="nav-item">
-                                            <a className="nav-link active" data-toggle="pill" href="#limit" role="tab"
-                                                aria-selected="true">Market</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="card-body market-limit">
-                                    <div className="tab-content">
-                                        <div className="tab-pane fade show active" id="market" role="tabpanel">
-
-                                            <form name="myform" className="currency_limit">
-
-                                                <div className="form-group">
-                                                    <div className="input-group">
-                                                        <div className="input-group-prepend">
-                                                            <span className="input-group-text">USD</span>
-                                                        </div>
-                                                        <input type="text" name="currency_amount"
-                                                            className="form-control text-right"  value={amount}
-                                                            onChange={(e) => setAmount(Number(e.target.value))}/>
-                                                    </div>
-                                                </div>
-
-                                                <ul className="list-group market-nested">
-                                                    <li
-                                                        className="list-group-item border-0 px-0 py-1 d-flex justify-content-between align-items-center">
-                                                        Value in USDT
-                                                        <span className="strong"> {amount*0.998} USDT</span>
-                                                    </li>
-                                                    <li
-                                                        className="list-group-item border-0 px-0 py-1 d-flex justify-content-between align-items-center">
-                                                        Order Value
-                                                        <span className="strong">65850 USDT</span>
-                                                    </li>
-                                                    <li
-                                                        className="list-group-item border-0 px-0 py-1 d-flex justify-content-between align-items-center">
-                                                        Available Margin
-                                                        <span className="strong">15458 USDT</span>
-                                                    </li>
-                                                    <li
-                                                        className="list-group-item border-0 px-0 py-1 d-flex justify-content-between align-items-center">
-                                                        Buy Cost @ 1.0x
-                                                        <span className="strong">0.00 USDT</span>
-                                                    </li>
-                                                    <li
-                                                        className="list-group-item border-0 px-0 py-1 d-flex justify-content-between align-items-center">
-                                                        Sell Cost @ 1.0x
-                                                        <span className="strong">0.00 USDT</span>
-                                                    </li>
-                                                </ul>
-
-                                                <div className="btn-group btn-block mt-3">
-                                                    <button type="button" name="deposit" className="btn btn-success" onClick={handleDeposit}>{depositLoading ? '...check your wallet' :'Deposit'}</button>
-                                                    <button type="button" name="withdraw" className="btn btn-danger" onClick={handleWithdraw}>{withdrawLoading ?'...check your wallet':'Withdraw'}</button>
-                                                </div>
-
-                                            </form>
-
-                                        </div>
-                                        {/*  *
-                                    </div>
-                                </div>
-                            </div> */}
+                            <HeatMap />
                         </div>
 
                         <div className="col-xl-5 col-lg-6 col-md-12 col-xxl-6">
