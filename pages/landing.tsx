@@ -10,6 +10,7 @@ import TronWeb from 'tronweb';
 import axios from 'axios';
 import { CopyrightStyles, MiniChart, TickerTape } from "react-ts-tradingview-widgets";
 import { SingleTicker } from "react-ts-tradingview-widgets";
+import Link from 'next/link';
 
 
 const LandingPage: NextPage = () => {
@@ -84,7 +85,7 @@ const LandingPage: NextPage = () => {
                                 </div>
                                 
                                 <div className="signin-btn">
-                                    <a className="btn btn-primary text-white" href='/dashboard'>Get Started</a>
+                                    <Link className="btn btn-primary text-white" href='/dashboard'>Get Started</Link>
                                 </div>
                             </nav>
                         </div>
@@ -106,7 +107,7 @@ const LandingPage: NextPage = () => {
                         </div>
 
                         <div className="intro-btn">
-                            <a className="btn btn-primary text-white" href='/dashboard'>Get Started</a>
+                            <Link className="btn btn-primary text-white" href='/dashboard'>Get Started</Link>
   
                         </div>
                     </div>

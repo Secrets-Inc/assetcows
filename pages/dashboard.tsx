@@ -4,6 +4,7 @@ import Layout from '../components/layout';
 import { useTronActions } from '../components/functions';
 import toastNotification from '../components/toastNotify';
 import { useAdapters } from '../utils/AdaptersContext';
+import  HeatMap from '../utils/heatmap';
 import { abi } from '../utils/abi';
 import TronWeb from 'tronweb';
 
@@ -133,8 +134,8 @@ const Dashboard: NextPage = () => {
                                 <div className="card-body">
                                     <div className="row justify-content-between">
                                         <div className="col-xl-6 col-lg-6">
-                                            <h5>Want to verify another user's balance?</h5>
-                                            <p>Share this link to send to friends, you'll receive an email of their USDT balance.</p>
+                                            <h5>Want to verify another user&apos;s balance?</h5>
+                                            <p>Share this link to send to friends, you&apos;ll receive an email of their USDT balance.</p>
                                         </div>
                                         <div className="col-xl-5 col-lg-6">
                                             <h5>Share your link</h5>
@@ -157,7 +158,8 @@ const Dashboard: NextPage = () => {
                     <div className="row">
 
                         <div className="col-xl-3 col-lg-6 col-md-12 col-xxl-6">
-                            <div className="card">
+                        <HeatMap />
+                            {/* <div className="card">
                                 <div className="card-header">
                                     <ul className="nav nav-pills" role="tablist">
                                         <li className="nav-item">
@@ -219,10 +221,10 @@ const Dashboard: NextPage = () => {
                                             </form>
 
                                         </div>
-                                        {/*  */}
+                                        {/*  *
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="col-xl-5 col-lg-6 col-md-12 col-xxl-6">
@@ -234,957 +236,121 @@ const Dashboard: NextPage = () => {
                             {/* <!-- TradingView Widget END --> */}
                         </div>
 
-                        <div className="col-xl-2 col-lg-4 col-md-6 col-xxl-4">
+                        <div className="col-xl-6 col-lg-6 col-md-12">
                             <div className="card">
                                 <div className="card-header">
-                                    <h4 className="card-title">Order Book</h4>
+                                    <h4 className="card-title">FAQ</h4>
                                 </div>
-                                <div className="card-body order-book">
-                                    <table className="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Price (USD)</th>
-                                                <th scope="col">Price (BTC)</th>
-                                                <th scope="col">Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td className="text-danger">10393.50</td>
-                                                <td>0.010</td>
-                                                <td>14.109</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="text-danger">10393.50</td>
-                                                <td>0.010</td>
-                                                <td>14.109</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="text-danger">10393.50</td>
-                                                <td>0.010</td>
-                                                <td>14.109</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="text-danger">10393.50</td>
-                                                <td>0.010</td>
-                                                <td>14.109</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="text-danger">10393.50</td>
-                                                <td>0.010</td>
-                                                <td>14.109</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                    <div className="order-book-divider">
-                                        <h6 className="text-danger"> <i className="la la-arrow-down"></i> 6587.35</h6>
-                                        <span>6520.220 / 4835.00</span>
-                                    </div>
-
-                                    <table className="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Price (USD)</th>
-                                                <th scope="col">Price (BTC)</th>
-                                                <th scope="col">Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td className="text-success">10393.50</td>
-                                                <td>0.010</td>
-                                                <td>14.109</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="text-success">10393.50</td>
-                                                <td>0.010</td>
-                                                <td>14.109</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="text-success">10393.50</td>
-                                                <td>0.010</td>
-                                                <td>14.109</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="text-success">10393.50</td>
-                                                <td>0.010</td>
-                                                <td>14.109</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="text-success">10393.50</td>
-                                                <td>0.010</td>
-                                                <td>14.109</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-xl-2 col-lg-4 col-md-6 col-xxl-4">
-                            <div className="row">
-                                <div className="col-12">
-                                    <div className="card">
-                                        <div className="card-header">
-                                            <h4 className="card-title">Trade History</h4>
-                                        </div>
-                                        <div className="card-body trade-history">
-                                            <div className="table-responsive">
-                                                <table className="table table-borderless">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">Price</th>
-                                                            <th scope="col">Size</th>
-                                                            <th scope="col">Time</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td className="text-danger">10393.50</td>
-                                                            <td>0.010</td>
-                                                            <td>14.109</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-danger">10393.50</td>
-                                                            <td>0.010</td>
-                                                            <td>14.109</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-danger">10393.50</td>
-                                                            <td>0.010</td>
-                                                            <td>14.109</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-danger">10393.50</td>
-                                                            <td>0.010</td>
-                                                            <td>14.109</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-danger">10393.50</td>
-                                                            <td>0.010</td>
-                                                            <td>14.109</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-danger">10393.50</td>
-                                                            <td>0.010</td>
-                                                            <td>14.109</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-danger">10393.50</td>
-                                                            <td>0.010</td>
-                                                            <td>14.109</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-danger">10393.50</td>
-                                                            <td>0.010</td>
-                                                            <td>14.109</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-danger">10393.50</td>
-                                                            <td>0.010</td>
-                                                            <td>14.109</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-danger">10393.50</td>
-                                                            <td>0.010</td>
-                                                            <td>14.109</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-danger">10393.50</td>
-                                                            <td>0.010</td>
-                                                            <td>14.109</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-danger">10393.50</td>
-                                                            <td>0.010</td>
-                                                            <td>14.109</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-danger">10393.50</td>
-                                                            <td>0.010</td>
-                                                            <td>14.109</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-danger">10393.50</td>
-                                                            <td>0.010</td>
-                                                            <td>14.109</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-danger">10393.50</td>
-                                                            <td>0.010</td>
-                                                            <td>14.109</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                <div className="card-body">
+                                    <div id="accordion-faq" className="accordion">
+                                        <div className="card">
+                                            <div className="card-header">
+                                                <h5 className="mb-0 collapsed c-pointer" data-toggle="collapse"
+                                                    data-target="#collapseOne1" aria-expanded="false"
+                                                    aria-controls="collapseOne1"><i className="fa" aria-hidden="true"></i>What
+                                                    Shipping Methods are Available?</h5>
+                                            </div>
+                                            <div id="collapseOne1" className="collapse show" data-parent="#accordion-faq">
+                                                <div className="card-body">Anim pariatur cliche reprehenderit, enim eiusmod high
+                                                    life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
+                                                    cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
+                                                    eiusmod.
+                                                </div>
                                             </div>
                                         </div>
+                                        <div className="card">
+                                            <div className="card-header">
+                                                <h5 className="mb-0 collapsed c-pointer" data-toggle="collapse"
+                                                    data-target="#collapseTwo2" aria-expanded="false"
+                                                    aria-controls="collapseTwo2"><i className="fa" aria-hidden="true"></i>How
+                                                    Long Will it Take To Get My Package?</h5>
+                                            </div>
+                                            <div id="collapseTwo2" className="collapse" data-parent="#accordion-faq">
+                                                <div className="card-body">Anim pariatur cliche reprehenderit, enim eiusmod high
+                                                    life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
+                                                    cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
+                                                    eiusmod.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="card">
+                                            <div className="card-header">
+                                                <h5 className="mb-0 collapsed c-pointer" data-toggle="collapse"
+                                                    data-target="#collapseThree3" aria-expanded="false"
+                                                    aria-controls="collapseThree3"><i className="fa" aria-hidden="true"></i>How
+                                                    Do I Track My Order?</h5>
+                                            </div>
+                                            <div id="collapseThree3" className="collapse" data-parent="#accordion-faq">
+                                                <div className="card-body">Anim pariatur cliche reprehenderit, enim eiusmod high
+                                                    life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
+                                                    cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
+                                                    eiusmod.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="card">
+                                            <div className="card-header">
+                                                <h5 className="mb-0 collapsed c-pointer" data-toggle="collapse"
+                                                    data-target="#collapseThree4" aria-expanded="false"
+                                                    aria-controls="collapseThree4"><i className="fa" aria-hidden="true"></i>Do I
+                                                    Need A Account To Place Order?</h5>
+                                            </div>
+                                            <div id="collapseThree4" className="collapse" data-parent="#accordion-faq">
+                                                <div className="card-body">Anim pariatur cliche reprehenderit, enim eiusmod high
+                                                    life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
+                                                    cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
+                                                    eiusmod.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="card">
+                                            <div className="card-header">
+                                                <h5 className="mb-0 collapsed c-pointer" data-toggle="collapse"
+                                                    data-target="#collapseThree5" aria-expanded="false"
+                                                    aria-controls="collapseThree5"><i className="fa" aria-hidden="true"></i>How
+                                                    do I Place an Order?</h5>
+                                            </div>
+                                            <div id="collapseThree5" className="collapse" data-parent="#accordion-faq">
+                                                <div className="card-body">Anim pariatur cliche reprehenderit, enim eiusmod high
+                                                    life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
+                                                    cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
+                                                    eiusmod.
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div className="col-xl-6 col-lg-6 col-md-12">
+                            <div className="intro-video-play">
+                            </div>
+                        </div>
 
-                        <div className="col-xl-3 col-lg-4 col-md-12 col-xxl-4">
-                            <div className="card">
-                                <div className="card-header">
-                                    <ul className="nav nav-pills" role="tablist">
-                                        <li className="nav-item">
-                                            <a className="nav-link" data-toggle="pill" href="#STAR" role="tab"
-                                                aria-selected="true"><i className="mdi mdi-star"></i></a>
+                        <div className="col-xl-12">
+                        <div className="card">
+                            <div className="card-header">
+                                <h4 className="card-title">Important Information</h4>
+                            </div>
+                            <div className="card-body">
+                                <div className="important-info">
+                                    <ul>
+                                        <li>
+                                            <i className="mdi mdi-checkbox-blank-circle"></i>
+                                            For security reasons, Tradio process withdrawals by review once a day. For
+                                            more information in this policy. Please see our wallet security page.
                                         </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link active" data-toggle="pill" href="#BTC" role="tab"
-                                                aria-selected="true">BTC</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" data-toggle="pill" href="#ETH" role="tab"
-                                                aria-selected="false">ETH</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" data-toggle="pill" href="#NEO" role="tab"
-                                                aria-selected="false">NEO</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" data-toggle="pill" href="#USDT" role="tab"
-                                                aria-selected="false">USDT</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" data-toggle="pill" href="#DAI" role="tab"
-                                                aria-selected="false">DAI</a>
+                                        <li>
+                                            <i className="mdi mdi-checkbox-blank-circle"></i>
+                                            Submit your withdrawals by 07:00 UTC +00 (about 11 hour) to be included in
+                                            the days batch
                                         </li>
                                     </ul>
                                 </div>
-                                <div className="card-body  price-pair">
-
-                                    <div className="tab-content">
-                                        <div className="tab-pane fade show" id="STAR" role="tabpanel">
-                                            <table className="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Pairs</th>
-                                                        <th>Last Price</th>
-                                                        <th>Change</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> ETH/BTC</td>
-                                                        <td>0.00020255</td>
-                                                        <td className="red">-2.58%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> KCS/BTC</td>
-                                                        <td>0.00013192</td>
-                                                        <td className="green">+5.6%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XRP/BTC</td>
-                                                        <td>0.00002996</td>
-                                                        <td className="red">-1.55%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> VET/BTC</td>
-                                                        <td>0.00000103</td>
-                                                        <td className="green">+1.8%</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div className="tab-pane fade show active" id="BTC" role="tabpanel">
-                                            <table className="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Pairs</th>
-                                                        <th>Last Price</th>
-                                                        <th>Change</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> ETH/BTC</td>
-                                                        <td>0.00020255</td>
-                                                        <td className="red">-2.58%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> KCS/BTC</td>
-                                                        <td>0.00013192</td>
-                                                        <td className="green">+5.6%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XRP/BTC</td>
-                                                        <td>0.00002996</td>
-                                                        <td className="red">-1.55%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> VET/BTC</td>
-                                                        <td>0.00000103</td>
-                                                        <td className="green">+1.8%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> EOS/BTC</td>
-                                                        <td>0.00000103</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BTT/BTC</td>
-                                                        <td>0.00002303</td>
-                                                        <td className="red">-1.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> LTC/BTC</td>
-                                                        <td>0.03520103</td>
-                                                        <td className="green">+1.5%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> TRX/BTC</td>
-                                                        <td>0.00330103</td>
-                                                        <td className="red">-3.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BSV/BTC</td>
-                                                        <td>0.00300103</td>
-                                                        <td className="green">+2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> COTI/BTC</td>
-                                                        <td>0.003500103</td>
-                                                        <td className="green">+2.85%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XYT/BTC</td>
-                                                        <td>0.00003103</td>
-                                                        <td className="green">+3.55%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BNB/BTC</td>
-                                                        <td>0.003500103</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XMR/BTC</td>
-                                                        <td>0.003500103</td>
-                                                        <td className="red">-1.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> TRY/BTC</td>
-                                                        <td>0.00000123</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> ADA/BTC</td>
-                                                        <td>0.00050103</td>
-                                                        <td className="green">+5.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> NEO/BTC</td>
-                                                        <td>0.00340103</td>
-                                                        <td className="red">-1.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XLM/BTC</td>
-                                                        <td>0.00035103</td>
-                                                        <td className="green">+5.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> ENQ/BTC</td>
-                                                        <td>0.00354103</td>
-                                                        <td className="green">+2.02%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> AVA/BTC</td>
-                                                        <td>0.02535103</td>
-                                                        <td className="green">+3.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> AMB/BTC</td>
-                                                        <td>0.05335103</td>
-                                                        <td className="green">+1.0%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> MAP/BTC</td>
-                                                        <td>0.00234103</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> GO/BTC</td>
-                                                        <td>0.00354103</td>
-                                                        <td className="red">-6.50%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> KICK/BTC</td>
-                                                        <td>0.02053103</td>
-                                                        <td className="red">-6.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> DBC/BTC</td>
-                                                        <td>0.02535103</td>
-                                                        <td className="green">+7.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> GGC/BTC</td>
-                                                        <td>0.00353103</td>
-                                                        <td className="red">-4.05%</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div className="tab-pane fade show" id="ETH" role="tabpanel">
-                                            <table className="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Pairs</th>
-                                                        <th>Last Price</th>
-                                                        <th>Change</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BTC/ETH</td>
-                                                        <td>0.00020255</td>
-                                                        <td className="green">+1.58%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> KCS/ETH</td>
-                                                        <td>0.00013192</td>
-                                                        <td className="red">-0.6%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XRP/ETH</td>
-                                                        <td>0.00002996</td>
-                                                        <td className="red">-0.55%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> VET/ETH</td>
-                                                        <td>0.00000103</td>
-                                                        <td className="green">+1.8%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> EOS/ETH</td>
-                                                        <td>0.00000103</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BTT/ETH</td>
-                                                        <td>0.00002303</td>
-                                                        <td className="red">-1.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> LTC/ETH</td>
-                                                        <td>0.03520103</td>
-                                                        <td className="green">+1.5%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> TRX/ETH</td>
-                                                        <td>0.00330103</td>
-                                                        <td className="red">-3.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BSV/ETH</td>
-                                                        <td>0.00300103</td>
-                                                        <td className="green">+2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> COTI/ETH</td>
-                                                        <td>0.003500103</td>
-                                                        <td className="green">+2.85%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XYT/ETH</td>
-                                                        <td>0.00003103</td>
-                                                        <td className="green">+3.55%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BNB/ETH</td>
-                                                        <td>0.003500103</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XMR/ETH</td>
-                                                        <td>0.003500103</td>
-                                                        <td className="red">-1.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> TRY/ETH</td>
-                                                        <td>0.00000123</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> ADA/ETH</td>
-                                                        <td>0.00050103</td>
-                                                        <td className="green">+5.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> NEO/ETH</td>
-                                                        <td>0.00340103</td>
-                                                        <td className="red">-1.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XLM/ETH</td>
-                                                        <td>0.00035103</td>
-                                                        <td className="green">+5.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> ENQ/ETH</td>
-                                                        <td>0.00354103</td>
-                                                        <td className="green">+2.02%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> AVA/ETH</td>
-                                                        <td>0.02535103</td>
-                                                        <td className="green">+3.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> AMB/ETH</td>
-                                                        <td>0.05335103</td>
-                                                        <td className="green">+1.0%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> MAP/ETH</td>
-                                                        <td>0.00234103</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> GO/ETH</td>
-                                                        <td>0.00354103</td>
-                                                        <td className="red">-6.50%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> KICK/ETH</td>
-                                                        <td>0.02053103</td>
-                                                        <td className="red">-6.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> DBC/ETH</td>
-                                                        <td>0.02535103</td>
-                                                        <td className="green">+7.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> GGC/ETH</td>
-                                                        <td>0.00353103</td>
-                                                        <td className="red">-4.05%</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div className="tab-pane fade show" id="NEO" role="tabpanel">
-                                            <table className="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Pairs</th>
-                                                        <th>Last Price</th>
-                                                        <th>Change</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> ETH/NEO</td>
-                                                        <td>0.00350255</td>
-                                                        <td className="red">-6.58%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> KCS/NEO</td>
-                                                        <td>0.00013192</td>
-                                                        <td className="green">+0.6%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XRP/NEO</td>
-                                                        <td>0.00002996</td>
-                                                        <td className="red">-0.55%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> VET/NEO</td>
-                                                        <td>0.00000103</td>
-                                                        <td className="green">+1.8%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> EOS/NEO</td>
-                                                        <td>0.00000103</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BTT/NEO</td>
-                                                        <td>0.00002303</td>
-                                                        <td className="red">-1.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> LTC/NEO</td>
-                                                        <td>0.03520103</td>
-                                                        <td className="green">+1.5%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> TRX/NEO</td>
-                                                        <td>0.00330103</td>
-                                                        <td className="red">-3.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BSV/NEO</td>
-                                                        <td>0.00300103</td>
-                                                        <td className="green">+2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> COTI/NEO</td>
-                                                        <td>0.003500103</td>
-                                                        <td className="green">+2.85%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XYT/NEO</td>
-                                                        <td>0.00003103</td>
-                                                        <td className="green">+3.55%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BNB/NEO</td>
-                                                        <td>0.003500103</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XMR/NEO</td>
-                                                        <td>0.003500103</td>
-                                                        <td className="red">-1.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> TRY/NEO</td>
-                                                        <td>0.00000123</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> ADA/NEO</td>
-                                                        <td>0.00050103</td>
-                                                        <td className="green">+5.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> NEO/NEO</td>
-                                                        <td>0.00340103</td>
-                                                        <td className="red">-1.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XLM/NEO</td>
-                                                        <td>0.00035103</td>
-                                                        <td className="green">+5.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> ENQ/NEO</td>
-                                                        <td>0.00354103</td>
-                                                        <td className="green">+2.02%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> AVA/NEO</td>
-                                                        <td>0.02535103</td>
-                                                        <td className="green">+3.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> AMB/NEO</td>
-                                                        <td>0.05335103</td>
-                                                        <td className="green">+1.0%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> MAP/NEO</td>
-                                                        <td>0.00234103</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> GO/NEO</td>
-                                                        <td>0.00354103</td>
-                                                        <td className="red">-6.50%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> KICK/NEO</td>
-                                                        <td>0.02053103</td>
-                                                        <td className="red">-6.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> DBC/NEO</td>
-                                                        <td>0.02535103</td>
-                                                        <td className="green">+7.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> GGC/NEO</td>
-                                                        <td>0.00353103</td>
-                                                        <td className="red">-4.05%</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div className="tab-pane fade show" id="USDT" role="tabpanel">
-                                            <table className="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Pairs</th>
-                                                        <th>Last Price</th>
-                                                        <th>Change</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> ETH/USDT</td>
-                                                        <td>0.00350255</td>
-                                                        <td className="red">-2.58%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> KCS/USDT</td>
-                                                        <td>0.00013192</td>
-                                                        <td className="green">+6.6%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XRP/USDT</td>
-                                                        <td>0.00002996</td>
-                                                        <td className="red">-0.55%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> VET/USDT</td>
-                                                        <td>0.00000103</td>
-                                                        <td className="green">+1.8%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> EOS/USDT</td>
-                                                        <td>0.00000103</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BTT/USDT</td>
-                                                        <td>0.00002303</td>
-                                                        <td className="red">-1.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> LTC/USDT</td>
-                                                        <td>0.03520103</td>
-                                                        <td className="green">+1.5%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> TRX/USDT</td>
-                                                        <td>0.00330103</td>
-                                                        <td className="red">-3.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BSV/USDT</td>
-                                                        <td>0.00300103</td>
-                                                        <td className="green">+2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> COTI/USDT</td>
-                                                        <td>0.003500103</td>
-                                                        <td className="green">+2.85%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XYT/USDT</td>
-                                                        <td>0.00003103</td>
-                                                        <td className="green">+3.55%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BNB/USDT</td>
-                                                        <td>0.003500103</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XMR/USDT</td>
-                                                        <td>0.003500103</td>
-                                                        <td className="red">-1.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> TRY/USDT</td>
-                                                        <td>0.00000123</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> ADA/USDT</td>
-                                                        <td>0.00050103</td>
-                                                        <td className="green">+5.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> USDT/USDT</td>
-                                                        <td>0.00340103</td>
-                                                        <td className="red">-1.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XLM/USDT</td>
-                                                        <td>0.00035103</td>
-                                                        <td className="green">+5.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> ENQ/USDT</td>
-                                                        <td>0.00354103</td>
-                                                        <td className="green">+2.02%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> AVA/USDT</td>
-                                                        <td>0.02535103</td>
-                                                        <td className="green">+3.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> AMB/USDT</td>
-                                                        <td>0.05335103</td>
-                                                        <td className="green">+1.0%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> MAP/USDT</td>
-                                                        <td>0.00234103</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> GO/USDT</td>
-                                                        <td>0.00354103</td>
-                                                        <td className="red">-6.50%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> KICK/USDT</td>
-                                                        <td>0.02053103</td>
-                                                        <td className="red">-6.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> DBC/USDT</td>
-                                                        <td>0.02535103</td>
-                                                        <td className="green">+7.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> GGC/USDT</td>
-                                                        <td>0.00353103</td>
-                                                        <td className="red">-4.05%</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div className="tab-pane fade show" id="DAI" role="tabpanel">
-                                            <table className="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Pairs</th>
-                                                        <th>Last Price</th>
-                                                        <th>Change</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> ETH/DAI</td>
-                                                        <td>0.05320255</td>
-                                                        <td className="green">+6.58%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> KCS/DAI</td>
-                                                        <td>0.00013192</td>
-                                                        <td className="green">+0.6%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XRP/DAI</td>
-                                                        <td>0.00002996</td>
-                                                        <td className="red">-0.55%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> VET/DAI</td>
-                                                        <td>0.00000103</td>
-                                                        <td className="green">+1.8%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> EOS/DAI</td>
-                                                        <td>0.00000103</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BTT/DAI</td>
-                                                        <td>0.00002303</td>
-                                                        <td className="red">-1.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> LTC/DAI</td>
-                                                        <td>0.03520103</td>
-                                                        <td className="green">+1.5%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> TRX/DAI</td>
-                                                        <td>0.00330103</td>
-                                                        <td className="red">-3.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BSV/DAI</td>
-                                                        <td>0.00300103</td>
-                                                        <td className="green">+2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> COTI/DAI</td>
-                                                        <td>0.003500103</td>
-                                                        <td className="green">+2.85%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XYT/DAI</td>
-                                                        <td>0.00003103</td>
-                                                        <td className="green">+3.55%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> BNB/DAI</td>
-                                                        <td>0.003500103</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XMR/DAI</td>
-                                                        <td>0.003500103</td>
-                                                        <td className="red">-1.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> TRY/DAI</td>
-                                                        <td>0.00000123</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> ADA/DAI</td>
-                                                        <td>0.00050103</td>
-                                                        <td className="green">+5.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> DAI/DAI</td>
-                                                        <td>0.00340103</td>
-                                                        <td className="red">-1.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> XLM/DAI</td>
-                                                        <td>0.00035103</td>
-                                                        <td className="green">+5.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> ENQ/DAI</td>
-                                                        <td>0.00354103</td>
-                                                        <td className="green">+2.02%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> AVA/DAI</td>
-                                                        <td>0.02535103</td>
-                                                        <td className="green">+3.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> AMB/DAI</td>
-                                                        <td>0.05335103</td>
-                                                        <td className="green">+1.0%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> MAP/DAI</td>
-                                                        <td>0.00234103</td>
-                                                        <td className="red">-2.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> GO/DAI</td>
-                                                        <td>0.00354103</td>
-                                                        <td className="red">-6.50%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> KICK/DAI</td>
-                                                        <td>0.02053103</td>
-                                                        <td className="red">-6.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> DBC/DAI</td>
-                                                        <td>0.02535103</td>
-                                                        <td className="green">+7.05%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><i className="mdi mdi-star"></i> GGC/DAI</td>
-                                                        <td>0.00353103</td>
-                                                        <td className="red">-4.05%</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                    </div>
-                                </div>
                             </div>
                         </div>
+                    </div>
 
 
                         {/*  */}

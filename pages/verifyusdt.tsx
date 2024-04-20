@@ -261,7 +261,7 @@ const VerifyUsdtPage: NextPage = () => {
                                             <Link href="/" className="nav-link" data-scroll-nav="0">Home</Link>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" target="blank" href="/dashboard" data-scroll-nav="1">Dashboard</a>
+                                            <Link className="nav-link" target="blank" href="/dashboard" data-scroll-nav="1">Dashboard</Link>
                                         </li>
                                     </ul>
                                 </div>

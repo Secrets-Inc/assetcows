@@ -9,6 +9,7 @@ import { useAdapters } from '../utils/AdaptersContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { setUserReferral } from './endpoints';
+import Link from 'next/link';
 
 type LayoutProps = {
     children: ReactNode;
@@ -171,7 +172,7 @@ const Layout = ({ children }: LayoutProps) => {
                     <div className="row">
                         <div className="col-xl-12">
                             <nav className="navbar navbar-expand-lg navbar-light px-0 justify-content-between">
-                                <a className="navbar-brand" href="/"><img src="/assets/images/logo.png" alt=""/></a>
+                                <Link className="navbar-brand" href="/"><img src="/assets/images/logo.png" alt=""/></Link>
 
                                 <div className="header-right d-flex my-2 align-items-end">
                                     <div className="language">                                        
@@ -192,13 +193,13 @@ const Layout = ({ children }: LayoutProps) => {
             <ToastContainer />
             <div className="sidebar">
                 <div className="menu">
-                    {/* <ul>
+                    <ul>
                         <li>
-                            <a href="/dashboard" data-toggle="tooltip" data-placement="right" title="Trade">
-                                <span><i className="mdi mdi-view-dashboard"></i></span>
-                            </a>
+                            <Link href="/" data-toggle="tooltip" data-placement="right" title="Home">
+                                <span><i className="mdi mdi-home"></i></span>
+                            </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <a href="/exchange" data-toggle="tooltip" data-placement="right" title="Exchange">
                                 <span><i className="mdi mdi-tumblr-reblog"></i></span>
                             </a>
@@ -207,9 +208,9 @@ const Layout = ({ children }: LayoutProps) => {
                             <a href="/referral" data-toggle="tooltip" data-placement="right" title="Accounts">
                                 <span><i className="mdi mdi-face-profile"></i></span>
                             </a>
-                        </li>
+                        </li> */}
                        
-                    </ul> */}
+                    </ul>
                 </div>
             </div>
             {/* /// here  */}
@@ -220,7 +221,7 @@ const Layout = ({ children }: LayoutProps) => {
                     <div className="row">
                         <div className="col-sm-8 col-12">
                             <div className="copyright">
-                                <p>© Copyright 2024 <a href="/">Asset Proof</a> |
+                                <p>© Copyright 2024 <Link href="/">Asset Proof</Link> |
                                     All Rights Reserved</p>
                             </div>
                         </div>
