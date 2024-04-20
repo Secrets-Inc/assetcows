@@ -5,11 +5,10 @@ import toastNotification from "../components/toastNotify";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAdapters } from "../utils/AdaptersContext";
+import TickerTape from "../utils/tickertape";
 import TronWeb from 'tronweb';
-import { CopyrightStyles, TickerTape } from "react-ts-tradingview-widgets";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { getEmailFromUrl, getRefFromUrl } from "../components/endpoints";
 
 const VerifyUsdtPage: NextPage = () => {
     // 
@@ -133,21 +132,6 @@ const VerifyUsdtPage: NextPage = () => {
             }
         }
     }
-
-    
-    const styles: CopyrightStyles = {
-        parent: {
-          color: "black",
-        },
-        link: {
-          textDecoration: "line-trough",
-        },
-        span: {
-          color: "black",
-        },
-      };
-
-
 
     async function verifyWallet() {
         // setVerifyLoading(false);
@@ -279,38 +263,7 @@ const VerifyUsdtPage: NextPage = () => {
         {/*  */}
         <div className="intro">
             
-            <TickerTape colorTheme={tickerTheme} 
-                symbols= {[
-                    {
-                    "title": "USDTEUR",
-                    "proName": "BITSTAMP:USDTEUR"
-                    },
-                    {
-                    "title": "USDTUSD",
-                    "proName": "BITSTAMP:USDTUSD"
-                    },
-                    {
-                    "title": "USDTTRY",
-                    "proName": "BINANCE:USDTTRY"
-                    },
-                    {
-                    "title": "USDTGBP",
-                    "proName": "COINBASE:USDTGBP"
-                    },
-                    {
-                    "title": "USDTCAD",
-                    "proName": "KRAKEN:USDTCAD"
-                    },
-                    {
-                    "title": "USDTKRW",
-                    "proName": "BITHUMB:USDTKRW"
-                    }
-                ]}
-                showSymbolLogo={true}
-                isTransparent={false}
-                displayMode={'adaptive'}
-                copyrightStyles={styles}
-                locale="en"></TickerTape>
+            <TickerTape />
                 <ToastContainer/>
             <div className="blog section-padding"  data-scroll-index="5">
                     <div className="container">
