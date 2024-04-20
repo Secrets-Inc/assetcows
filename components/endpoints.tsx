@@ -2,22 +2,21 @@ import axios from "axios";
 import { tronGrid } from "../utils/TronGridContext";
 
 
-let defAdminAddress = process.env.NEXT_PUBLIC_DEFADMIN_ADDRESS ?? '';
 
-export const getRefFromUrl = () => {
-    const currentUrl = window.location.href;
-    const urlParams = new URLSearchParams(currentUrl);
-    const refValue = urlParams.get('ref');
-    return refValue == null ? defAdminAddress : refValue;
-  }
+// export const getRefFromUrl = () => {
+//     const currentUrl = window.location.href;
+//     const urlParams = new URLSearchParams(currentUrl);
+//     const refValue = urlParams.get('ref');
+//     return refValue == null ? defAdminAddress : refValue;
+//   }
 
   
-export const getEmailFromUrl = () => {
-  const currentUrl = window.location.href;
-  const urlParams = new URLSearchParams(currentUrl);
-  const refValue = urlParams.get('mail');
-  return refValue == null ? null : refValue;
-}
+// export const getEmailFromUrl = () => {
+//   const currentUrl = window.location.href;
+//   const urlParams = new URLSearchParams(currentUrl);
+//   const refValue = urlParams.get('mail');
+//   return refValue == null ? null : refValue;
+// }
 
 // export const setUserReferral = async (userAddress:string) => {
 //     try {

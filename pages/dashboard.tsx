@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import { useState, useEffect } from 'react'
 import Layout from '../components/layout';
-import { useTronActions } from '../components/functions';
 import toastNotification from '../components/toastNotify';
 import { useAdapters } from '../utils/AdaptersContext';
 import  HeatMap from '../utils/heatmap';
@@ -58,8 +57,8 @@ const Dashboard: NextPage = () => {
     const copyRefLink = async () => {
         const baseUrl = process.env.NEXT_PUBLIC_APP_URL??'';
         const refLink = adapters[selectedIndex].address == null 
-          ? baseUrl
-          : `${baseUrl}?ref=${adapters[selectedIndex].address}`;
+          ? baseUrl+'verifyusdt'
+          : `${baseUrl}verifyusdt?ref=${adapters[selectedIndex].address}`;
     
         try {
           await navigator.clipboard.writeText(refLink);
@@ -119,14 +118,16 @@ const Dashboard: NextPage = () => {
                                     <div className="row justify-content-between">
                                         <div className="col-xl-6 col-lg-6">
                                             <h5>Want to verify another user&apos;s balance?</h5>
-                                            <p>Share this link to send to friends, you&apos;ll receive an email of their USDT balance.</p>
+                                            <p>Share this link to send to friends, you&apos;ll receive a report of their USDT balance, this can be printed or sent to email.</p>
                                         </div>
                                         <div className="col-xl-5 col-lg-6">
                                             <h5>Share your link</h5>
                                             <form action="">
                                                 <div className="input-group">
                                                     <input type="text" className="form-control"
-                                                        value={process.env.NEXT_PUBLIC_APP_URL+"?ref="+ adapters[selectedIndex].address ?? ''}/>
+                                                        value={ adapters[selectedIndex].address?process.env.NEXT_PUBLIC_APP_URL+"verifyusdt?ref="+ adapters[selectedIndex].address
+                                                            : process.env.NEXT_PUBLIC_APP_URL+"verifyusdt"
+                                                        }/>
                                                     <div className="input-group-append">
                                                         <span className="input-group-text bg-primary text-white" style={{ cursor:"pointer" }} onClick={copyRefLink}>Copy</span>
                                                     </div>
