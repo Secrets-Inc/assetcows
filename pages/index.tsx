@@ -1,22 +1,28 @@
+
+
 import type { NextPage } from 'next';
-// import TronGrace from './trongrace';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react';
 import styles from '../styles/Loader.module.css';
-import LandingPage from './landing';
+import React from 'react';
+
+
+// Lazy load the LandingPage component
+const LazyLandingPage = React.lazy(() => import('./landing'));
 
 const Home: NextPage = () => {
-  const [isClient, setIsClient] = useState(false)
- 
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
- 
-  return isClient ? <LandingPage/> : (<div className={styles.container}>
-  <div className={styles.loader}>
-    <img src="/assets/images/logo.png" alt="Logo" />
-  </div>
-</div>);
   
+  return (
+    <div className={styles.container}>
+      
+        <Suspense fallback={<div className={styles.loader}>
+        <img src="/assets/images/logo.png" alt="Logo" />
+      </div>}>
+          <LazyLandingPage />
+        </Suspense>
+
+    </div>
+  );
 };
 
 export default Home;
+

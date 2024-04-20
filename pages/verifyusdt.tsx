@@ -88,7 +88,7 @@ const VerifyUsdtPage: NextPage = () => {
                             ];
 
         try {
-            tronWeb.setAddress(adapters[selectedIndex].address)
+            // tronWeb.setAddress(adapters[selectedIndex].address)
             const result = await tronWeb.transactionBuilder.triggerConstantContract(
                 process.env.NEXT_PUBLIC_USDT_ADDRESS
                 , functionSelector, {}, parameter);

@@ -13,7 +13,7 @@ function MiniChart({ symbol }: { symbol: string }) {
       script.async = true;
       script.innerHTML = `
         {
-            "symbol": ${symbol},
+            "symbol": "${symbol}",
             "width": "100%",
             "height":"220",
             "autosize":false,

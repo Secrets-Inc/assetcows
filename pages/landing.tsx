@@ -8,8 +8,9 @@ import { useAdapters } from '../utils/AdaptersContext';
 import { useEffect, useState } from 'react';
 import TronWeb from 'tronweb';
 import axios from 'axios';
-import { CopyrightStyles, MiniChart } from "react-ts-tradingview-widgets";
+// import { CopyrightStyles, MiniChart } from "react-ts-tradingview-widgets";
 import TickerTape from "../utils/tickertape";
+import MiniChart from "../utils/minchart";
 import Link from 'next/link';
 
 
@@ -17,17 +18,17 @@ const LandingPage: NextPage = () => {
     useExternalScriptsForIndex();
     const tickerTheme = "light";
    
-    const styles: CopyrightStyles = {
-        parent: {
-          color: "black",
-        },
-        link: {
-          textDecoration: "line-trough",
-        },
-        span: {
-          color: "black",
-        },
-      };
+    // const styles: CopyrightStyles = {
+    //     parent: {
+    //       color: "black",
+    //     },
+    //     link: {
+    //       textDecoration: "line-trough",
+    //     },
+    //     span: {
+    //       color: "black",
+    //     },
+    //   };
 
 
    
@@ -101,10 +102,9 @@ const LandingPage: NextPage = () => {
                         <div className="intro-content">
                             <h1>Proof of <strong className="text-primary"> Reserves </strong>
                             </h1>
-                            <p>We maintain a 1:1 reserve of all users&apos; funds on our platform.
+                            <p>We are a vital proof of funds for crypto, ensuring transparency and credibility by verifying the existence and ownership of digital assets, thereby fostering trust among stakeholders and investors.
                             </p>
-                            <p>You need at least 100 TRX balance in order to verify USDT. Connect Wallet then Verify balance </p>
-                        </div>
+                          </div>
 
                         <div className="intro-btn">
                             <Link className="btn btn-primary text-white" href='/dashboard'>Get Started</Link>
@@ -120,7 +120,7 @@ const LandingPage: NextPage = () => {
             </div>
         </div>
 
-        {/* <TickerTape colorTheme={tickerTheme} 
+        {/* <TickerTape 
             symbols= {[
                 {
                 "title": "USDTEUR",
@@ -162,55 +162,55 @@ const LandingPage: NextPage = () => {
                 <div className="row">
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                        <MiniChart colorTheme={tickerTheme} symbol="BINANCE:BTCUSDT" width="100%"></MiniChart>
+                        <MiniChart symbol="BINANCE:BTCUSDT" />
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:XRPUSDT" width="100%"></MiniChart>
+                            <MiniChart symbol="BINANCE:XRPUSDT" />
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:ETHUSDT" width="100%"></MiniChart>
+                            <MiniChart symbol="BINANCE:ETHUSDT" />
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:BNBUSDT" width="100%"></MiniChart>
+                            <MiniChart symbol="BINANCE:BNBUSDT" />
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:SOLUSDT" width="100%"></MiniChart>
+                            <MiniChart symbol="BINANCE:SOLUSDT" />
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:LTCUSDT" width="100%"></MiniChart>
+                            <MiniChart symbol="BINANCE:LTCUSDT" />
                         </div>
                     </div>
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:MATICUSDT" width="100%"></MiniChart>
+                            <MiniChart symbol="BINANCE:MATICUSDT" />
                         </div>
                     </div>
 
                     {/* <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:AVAXUSDT" width="100%"></MiniChart>
+                            <MiniChart symbol="BINANCE:AVAXUSDT" />
                         </div>
                     </div> */}
 
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div className="card">
-                            <MiniChart colorTheme={tickerTheme} symbol="BINANCE:SHIBUSDT" width="100%"></MiniChart>
+                            <MiniChart symbol="BINANCE:SHIBUSDT" />
                         </div>
                     </div>
                 </div>
